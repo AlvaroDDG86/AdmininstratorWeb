@@ -24,15 +24,23 @@ $(document).ready(function(){
     
      //Actualizamos los campos cuando haya un cambio en la select
     $('#lstTelefonosEliminar').change(function() {
-        var id=$("#lstTelefonosEliminar option:selected" ).attr('id');
+        if($("#lstTelefonosEliminar option:selected" ).val()=="-1"){
+            $("#phoneFieldE").val("");
+        }else{
+            var id=$("#lstTelefonosEliminar option:selected" ).attr('id');
             $("#phoneFieldE").val( aTelefonos[id].telefono );
+        }
     });
     
     
      //Actualizamos los campos cuando haya un cambio en la select
     $('#lstTelefonosModificar').change(function() {
-        var id=$("#lstTelefonosModificar option:selected" ).attr('id');
+        if($("#lstTelefonosModificar option:selected" ).val()=="-1"){
+            $("#phoneFieldM").val("");
+        }else{
+            var id=$("#lstTelefonosModificar option:selected" ).attr('id');
             $("#phoneFieldM").val( aTelefonos[id].telefono );
+        }
     });    
     
     //Forzamos el change para que cargen los datos

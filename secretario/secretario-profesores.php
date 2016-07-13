@@ -17,13 +17,17 @@
     {
         echo "no se ha podido conectar con la base de datos";
     }
-    if(isset($_POST["idNuevo"]) && isset($_POST["telefonoN"])){
+    if(isset($_POST["idNuevo"]) && isset($_POST["nombreNuevo"]) && isset($_POST["apellidosNuevo"]) && isset($_POST["direccionNuevo"])){
         try
         {
-            if($oCentro->newTelefono($_POST["idNuevo"],$_POST["telefonoN"])){
-                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nuevo teléfono agregado correctamente</div>';
+            $id=$_POST["idNuevo"];
+            $nombre=$_POST["nombreNuevo"];
+            $apellidos=$_POST["apellidosNuevo"];
+            $email=$_POST["direccionNuevo"];
+            if($oCentro->newProfesor($id, $nombre, $apellidos, $email)){
+                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nuevo profesor agregado correctamente</div>';
             }else{
-                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al crear teléfono</div>';
+                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al crear profesor</div>';
             }
         }
         catch (Exception $x)
@@ -31,41 +35,31 @@
             exit;
         }
     }
-    if(isset($_POST["idNuevo"]) && isset($_POST["telefonoN"])){
+    if(isset($_POST["idEliminar"])){
         try
         {
-            if($oCentro->newTelefono($_POST["idNuevo"],$_POST["telefonoN"])){
-                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nuevo teléfono agregado correctamente</div>';
+            if($oCentro->deleteProfesor($_POST["idEliminar"])){
+                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Profesor eliminado</div>';
             }else{
-                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al crear teléfono</div>';
+                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al eliminar profesor</div>';
             }
-        }
+         }
         catch (Exception $x)
         {
             exit;
         }
     }
-    if(isset($_POST["idEliminar"]) && isset($_POST["telefonoE"])){
+    if(isset($_POST["idModificar"]) && isset($_POST["nombreModificar"]) && isset($_POST["apellidosModificar"]) && isset($_POST["direccionModificar"])){
         try
         {
-            if($oCentro->deleteTelefono($_POST["idEliminar"],$_POST["telefonoE"])){
-                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Teléfono eliminado correctamente</div>';
+            $id=$_POST["idModificar"];
+            $nombre=$_POST["nombreModificar"];
+            $apellidos=$_POST["apellidosModificar"];
+            $email=$_POST["direccionModificar"];
+            if($oCentro->editProfesor($id, $nombre, $apellidos, $email)){
+                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Profesor actualizado</div>';
             }else{
-                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al eliminar teléfono</div>';
-            }
-        }
-        catch (Exception $x)
-        {
-            exit;
-        }
-    }
-    if(isset($_POST["idModificar"]) && isset($_POST["telefonoM"])){
-        try
-        {
-            if($oCentro->editTelefono($_POST["idModificar"],$_POST["telefonoM"])){
-                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Teléfono editado correctamente</div>';
-            }else{
-                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al editar teléfono</div>';
+                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al actualizar profesor</div>';
             }
         }
         catch (Exception $x)
@@ -124,7 +118,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="secretario-inicio.html">Inicio</a>
+					<a class="navbar-brand" href="secretario-inicio.php">Inicio</a>
 				</div>
 				<div class="collapse navbar-collapse" id="mynavbar-content">
 					<ul class="nav navbar-nav">
@@ -150,29 +144,29 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active" id="nuevo">
-						<form class="form-horizontal">
+						<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 							<div class="form-group">
 								<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="text" class="form-control" id="idField" placeholder="Id" />
+                                                                    <input type="text" class="form-control" id="idField" name="idNuevo" placeholder="Id" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="email" class="form-control" id="nameField" placeholder="Nombre" />
+                                                                    <input type="text" class="form-control" id="nameField" name="nombreNuevo" placeholder="Nombre" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="email" class="form-control" id="apellidosField" placeholder="Apellidos" />
+                                                                    <input type="text" class="form-control" id="apellidosField" name="apellidosNuevo" placeholder="Apellidos" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
+								<label for="dirField" class="col-xs-12 col-sm-2">Email</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="date" class="form-control" id="dirField" placeholder="Dirección" />
+                                                                    <input type="email" class="form-control" id="dirField" name="direccionNuevo" placeholder="Dirección" />
 								</div>
 							</div>
 							<div class="col-xs-10 col-xs-offset-2">
@@ -181,34 +175,31 @@
 						</form>
 					</div>
 					<div class="tab-pane" id="eliminar">
-						<form class="form-horizontal">
+						<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 							<div class="form-group">
 								<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-12 col-sm-10">
-										<select class="col-xs-12 col-sm-4 form-control">
-											<option id="" value="1">Id</option>
-											<option id="" value="2">2</option>
-											<option id="" value="3">3</option>
-											<option id="" value="4">4</option>
-										</select>
+                                                                            <select class="col-xs-12 col-sm-4 form-control" id="lstProfesoresEliminar" name="idEliminar">
+                                                                                <option value="-1">Profesores</option>	
+                                                                            </select>
 									</div>
 							</div>
 							<div class="form-group">
 								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="text" class="form-control" id="nameField" placeholder="Nombre" />
+                                                                    <input type="text" class="form-control" id="nombreFieldE" name="nombreEliminar" placeholder="Nombre" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="text" class="form-control" id="apellidosField" placeholder="Apellidos" />
+                                                                    <input type="text" class="form-control" id="apellidosFieldE" name="apellidosEliminar" placeholder="Apellidos" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="text" class="form-control" id="dirField" placeholder="Dirección" />
+                                                                    <input type="email" class="form-control" id="emailFieldE" name="direccionEliminar" placeholder="Dirección" />
 								</div>
 							</div>
 							<div class="col-xs-10 col-xs-offset-2">
@@ -217,34 +208,31 @@
 						</form>
 					</div>
 					<div class="tab-pane" id="modificar">
-						<form class="form-horizontal">
+						<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 							<div class="form-group">
 								<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 								<div class="col-xs-12 col-sm-10">
-									<select class="col-xs-12 col-sm-4 form-control">
-										<option id="" value="1">Id</option>
-										<option id="" value="2">2</option>
-										<option id="" value="3">3</option>
-										<option id="" value="4">4</option>
+									<select class="col-xs-12 col-sm-4 form-control" id="lstProfesoresModificar" name="idModificar">
+                                                                            <option value="-1">Profesores</option>	
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="text" class="form-control" id="nameField" placeholder="Nombre" />
+                                                                    <input type="text" class="form-control" id="nombreFieldM" name="nombreModificar" placeholder="Nombre" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="text" class="form-control" id="apellidosField" placeholder="Apellidos" />
+                                                                    <input type="text" class="form-control" id="apellidosFieldM" name="apellidosModificar" placeholder="Apellidos" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
 								<div class="col-xs-12 col-sm-10">
-									<input type="text" class="form-control" id="dirField" placeholder="Dirección" />
+                                                                    <input type="email" class="form-control" id="emailFieldM" name="direccionModificar" placeholder="Dirección" />
 								</div>
 							</div>
 							<div class="col-xs-10 col-xs-offset-2">
@@ -254,6 +242,9 @@
 					</div>
 				</div>
 			</div>
+                     <div class="panel-footer">
+                            <?php echo $result; ?>
+                    </div>
 		</div>
     </div>
 
@@ -272,6 +263,9 @@
 
     <!-- Theme JavaScript -->
     <script src="../js/agency.min.js"></script>
+    
+     <!-- Theme JavaScript -->
+    <script src="../js/se-main-profesores.js"></script>
 
 </body>
 

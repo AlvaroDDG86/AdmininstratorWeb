@@ -109,7 +109,7 @@ if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene u
 							<input type="password" class="form-control" id="passField" name="password" placeholder="Password" />
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary">Entrar</button>
+					<button type="submit" class="btn btn-primary col-xs-12">Entrar</button>
 				</form>
 			</div>
 		</div>

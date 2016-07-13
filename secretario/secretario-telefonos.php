@@ -173,7 +173,7 @@
 									<label for="desField" class="col-xs-12 col-sm-2">Descripción</label>
 									<div class="col-xs-12 col-sm-10">
                                                                             <select class="col-xs-12 col-sm-4 form-control" id="lstTelefonosEliminar" name="idEliminar">
-											
+											<option value="-1">Teléfonos</option>	
 										</select>
 									</div>
 								</div>
@@ -194,7 +194,7 @@
 									<label for="desField" class="col-xs-12 col-sm-2">Descripción</label>
 									<div class="col-xs-12 col-sm-10">
 										<select class="col-xs-12 col-sm-4 form-control" id="lstTelefonosModificar" name="idModificar">
-											
+											<option value="-1">Teléfonos</option>	
 										</select>
 									</div>
 								</div>

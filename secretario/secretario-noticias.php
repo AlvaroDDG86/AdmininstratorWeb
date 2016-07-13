@@ -183,7 +183,7 @@
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-10">
 										<select id="lstNoticiasEliminar" class="col-xs-12 col-sm-4 form-control" name="idEliminar">
-											
+											<option value="-1">Noticias</option>	
 										</select>
 									</div>
 								</div>
@@ -216,7 +216,7 @@
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-12 col-sm-10">
                                                                                 <select id="lstNoticiasModificar" class="col-xs-12 col-sm-4 form-control" name="idModificar">
-											
+											<option value="-1">Noticias</option>	
 										</select>
 									</div>
 								</div>

@@ -41,6 +41,14 @@ switch($_POST["tipo"]){
         $aDatos=$oCentro->getEventos();
         echo json_encode($aDatos); 
         break;
+    case "centro":
+        $aDatos=$oCentro->getCentro();
+        echo json_encode($aDatos); 
+        break;
+     case "profesor":
+        $aDatos=$oCentro->getProfesores();
+        echo json_encode($aDatos); 
+        break;
     default:
         echo "-1";
         exit;

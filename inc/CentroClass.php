@@ -40,7 +40,7 @@ class CentroClass {
 	if(!preg_match("/^[0-9a-zA-Z]{1,15}$/",$contrasena))
 		throw new Exception("Valor incorrecto en la contraseña");
         //Variable que recogerá los datos de la consulta
-        $srcDatos = $this->conBBDD->query("call getUsuario('".$usuario."', '".$contrasena."')");
+        $srcDatos = $this->conBBDD->query("call getUsuario('".$usuario."', '".$contrasena."');");
         return $srcDatos->fetch_object()==null?false:true;
     }
     
@@ -56,7 +56,7 @@ class CentroClass {
      * @return boolean 
      */
     public function newNoticia($id,$nombre,$descripcion,$fecha) {
-        $sql = "call newNoticia(".$id.",'".$nombre."','".$descripcion."','".$fecha."',1)";
+        $sql = "call newNoticia(".$id.",'".$nombre."','".$descripcion."','".$fecha."',1);";
         return $this->conBBDD->query($sql);
     }
      /**
@@ -65,7 +65,7 @@ class CentroClass {
       * @return boolean
       */
     public function deleteNoticia($id) {
-        $sql = "call deleteNoticia(".$id.")";
+        $sql = "call deleteNoticia(".$id.");";
         return $this->conBBDD->query($sql);
     }
     
@@ -75,7 +75,7 @@ class CentroClass {
      * @return boolean
      */
     public function editNoticia($id,$nombre,$descripcion,$fecha) {
-        $sql = "call editNoticia(".$id.",'".$nombre."','".$descripcion."','".$fecha."')";
+        $sql = "call editNoticia(".$id.",'".$nombre."','".$descripcion."','".$fecha."');";
         return $this->conBBDD->query($sql);
     }
     
@@ -87,7 +87,7 @@ class CentroClass {
         //Variable que contendra los datos de las noticias
         $aNoticias=[];
         //Variable que contendra el resultado de la consulta
-        $rscDatos=  $this->conBBDD->query("call getNoticias()");
+        $rscDatos=  $this->conBBDD->query("call getNoticias();");
         //Bucle para recorrer todas las filas de los datos
         while($filFila=$rscDatos->fetch_object())
         {
@@ -108,7 +108,7 @@ class CentroClass {
      * @return boolean
      */
     public function newEvento($id,$nombre,$descripcion,$fecha) {
-        $sql = "call newEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."',1)";
+        $sql = "call newEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."',1);";
         return $this->conBBDD->query($sql);
     }
     
@@ -118,7 +118,7 @@ class CentroClass {
       * @return boolean
       */
     public function deleteEvento($id) {
-        $sql = "call deleteEvento(".$id.")";
+        $sql = "call deleteEvento(".$id.");";
         return $this->conBBDD->query($sql);
     }
     
@@ -128,7 +128,7 @@ class CentroClass {
      * @return boolean
      */
     public function editEvento($id,$nombre,$descripcion,$fecha) {
-        $sql = "call editEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."')";
+        $sql = "call editEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."');";
         return $this->conBBDD->query($sql);
     }
     
@@ -140,7 +140,7 @@ class CentroClass {
         //Variable que contendra los datos de las noticias
         $aEventos=[];
         //Variable que contendra el resultado de la consulta
-        $rscDatos=  $this->conBBDD->query("call getEventos()");
+        $rscDatos=  $this->conBBDD->query("call getEventos();");
         //Bucle para recorrer todas las filas de los datos
         while($filFila=$rscDatos->fetch_object())
         {
@@ -170,7 +170,7 @@ class CentroClass {
      * @return boolean
      */
     public function deleteTelefono($descripcion) {
-        $sql = "call deleteTelefono('".$descripcion."')";
+        $sql = "call deleteTelefono('".$descripcion."');";
         return $this->conBBDD->query($sql);
     }
     
@@ -181,7 +181,7 @@ class CentroClass {
      * @return boolean
      */
     public function editTelefono($descripcion,$telefono) {
-        $sql = "call editTelefono('".$descripcion."','".$telefono."')";
+        $sql = "call editTelefono('".$descripcion."','".$telefono."');";
         return $this->conBBDD->query($sql);
     }
     
@@ -193,7 +193,7 @@ class CentroClass {
         //Variable que contendra los datos de las noticias
         $aTelefonos=[];
         //Variable que contendra el resultado de la consulta
-        $rscDatos=  $this->conBBDD->query("call getTelefonos()");
+        $rscDatos=  $this->conBBDD->query("call getTelefonos();");
         //Bucle para recorrer todas las filas de los datos
         while($filFila=$rscDatos->fetch_object())
         {
@@ -203,6 +203,63 @@ class CentroClass {
         return $aTelefonos;
     }
     
+    //  --------------------------------------------- Administracion PROFESORES
+    
+    /**
+     * Método para agregar un nuevo profesor
+     * @param int $id
+     * @param String $nombre
+     * @param String $apellidos
+     * @param String $email
+     * @return boolean
+     */
+    public function newProfesor($id,$nombre,$apellidos,$email) {
+        $sql = "call newProfesor(".$id.",'".$nombre."','".$apellidos."','".$email."');";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para eliminar un profesor
+     * @param int $id
+     * @return boolean
+     */
+    public function deleteProfesor($id) {
+         $sql = "call deleteProfesor(".$id.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para editar un profesor
+     * @param int $id
+     * @param String $nombre
+     * @param String $apellidos
+     * @param String $email
+     * @return boolean
+     */
+    public function editProfesor($id,$nombre,$apellidos,$email) {
+       $sql = "call editProfesor(".$id.",'".$nombre."','".$apellidos."','".$email."');";
+       return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para obtener los profesores
+     * @return aProfesores
+     */
+    public function getProfesores() {
+        //Variable que contendra los datos de las noticias
+        $aProfesores=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getProfesores();");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aProfesores[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aProfesores;
+    }
+    
+    // --------------------------Administración para CENTRO
     
     /**
      * Método para editar los datos del centro
@@ -213,10 +270,18 @@ class CentroClass {
      * @return boolean
      */
     public function editCentro($nombre, $descripcion, $resumen, $direccion) {
-        $sql = "call editCentro('".$nombre."','".$descripcion."','".$resumen."','".$direccion."')";
+        $sql = "call editCentro('".$nombre."','".$descripcion."','".$resumen."','".$direccion."');";
         return $this->conBBDD->query($sql);
     }
 
+    /**
+     * Método para recoger los datos del centro
+     * @return Centro
+     */
+    public function getCentro() {
+        $sql = "call getCentro();";
+        return $this->conBBDD->query($sql)->fetch_object();
+    }
     
     /**
      * Función para detruir el objeto de la clase y cerrar la conexión

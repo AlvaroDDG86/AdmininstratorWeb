@@ -22,19 +22,31 @@ $(document).ready(function(){
         },"json"); 
     //Actualizamos los campos cuando haya un cambio en la select
     $('#lstNoticiasEliminar').change(function() {
-        var id=$("#lstNoticiasEliminar option:selected" ).attr('id');
+        if($("#lstNoticiasEliminar option:selected" ).val()=="-1"){
+            $("#nameFieldE").val("");
+            $("#descFieldE").val("");
+            $("#dateFieldE").val("");
+        }else{
+            var id=$("#lstNoticiasEliminar option:selected" ).attr('id');
             $("#nameFieldE").val( aNoticias[id].nombreNoticia );
             $("#descFieldE").val( aNoticias[id].descripcionNoticia );
             $("#dateFieldE").val( aNoticias[id].fechaNoticia );
+        }
     });
     
     
      //Actualizamos los campos cuando haya un cambio en la select
     $('#lstNoticiasModificar').change(function() {
-        var id=$("#lstNoticiasModificar option:selected" ).attr('id');
+        if($("#lstNoticiasModificar option:selected" ).val()=="-1"){
+            $("#nameFieldE").val("");
+            $("#descFieldE").val("");
+            $("#dateFieldE").val("");
+        }else{
+            var id=$("#lstNoticiasModificar option:selected" ).attr('id');
             $("#nameFieldM").val( aNoticias[id].nombreNoticia );
             $("#descFieldM").val( aNoticias[id].descripcionNoticia );
             $("#dateFieldM").val( aNoticias[id].fechaNoticia );
+        }
     });
     
     

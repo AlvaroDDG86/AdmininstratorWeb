@@ -22,19 +22,31 @@ $(document).ready(function(){
         },"json"); 
     //Actualizamos los campos cuando haya un cambio en la select
     $('#lstEventosEliminar').change(function() {
-        var id=$("#lstEventosEliminar option:selected" ).attr('id');
+        if($("#lstEventosEliminar option:selected" ).val()=="-1"){
+            $("#nameFieldE").val("");
+            $("#descFieldE").val("");
+            $("#dateFieldE").val("");
+        }else{
+            var id=$("#lstEventosEliminar option:selected" ).attr('id');
             $("#nameFieldE").val( aEventos[id].nombreEvento );
             $("#descFieldE").val( aEventos[id].descripcionEvento );
             $("#dateFieldE").val( aEventos[id].fechaEvento );
+        }
     });
     
     
      //Actualizamos los campos cuando haya un cambio en la select
     $('#lstEventosModificar').change(function() {
-        var id=$("#lstEventosModificar option:selected" ).attr('id');
+        if($("#lstEventosModificar option:selected" ).val()=="-1"){
+            $("#nameFieldM").val("");
+            $("#descFieldM").val("");
+            $("#dateFieldM").val("");
+        }else{
+            var id=$("#lstEventosModificar option:selected" ).attr('id');
             $("#nameFieldM").val( aEventos[id].nombreEvento );
             $("#descFieldM").val( aEventos[id].descripcionEvento );
             $("#dateFieldM").val( aEventos[id].fechaEvento );
+        }
     });
     
     

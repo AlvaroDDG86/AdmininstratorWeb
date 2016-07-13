@@ -183,7 +183,7 @@
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-10">
                                                                             <select class="col-xs-12 col-sm-4 form-control" name="idEliminar" id="lstEventosEliminar">
-                                                                                
+                                                                                <option value="-1">Eventos</option>	
                                                                             </select>
 									</div>
 								</div>
@@ -216,7 +216,7 @@
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-12 col-sm-10">
                                                                             <select class="col-xs-12 col-sm-4 form-control" name="idModificar" id="lstEventosModificar">
-											
+											<option value="-1">Eventos</option>	
                                                                             </select>
 									</div>
 								</div>
@@ -244,10 +244,10 @@
 							</form>
 						</div>
 					</div>
-                                <div class="panel-footer">
-                                    <?php echo $result; ?>
-                                </div>
 			</div>
+                    <div class="panel-footer">
+                        <?php echo $result; ?>
+                    </div>
 		</div>
     </div>
 

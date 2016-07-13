@@ -152,7 +152,7 @@
     <script src="../js/agency.min.js"></script>
     
     <!-- Theme JavaScript -->
-    <script src="../js/se-main.js"></script>
+    <script src="../js/se-main-centro.js"></script>
 
 </body>
 
