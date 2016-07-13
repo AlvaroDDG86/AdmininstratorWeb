@@ -1,0 +1,227 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of CursoClass
+ *
+ * @author usuario
+ */
+class CentroClass {
+    
+    //Variable que contendra un objeto de la conexión
+    private $conBBDD; 
+    
+    public function __construct($host, $usuario, $password, $baseDatos) {
+        //Se inicializa el objeto sqli con los parámetros del constructor
+        $this->conBBDD=new mysqli($host,$usuario,$password,$baseDatos);
+        //Evaluamos si no hay código de error en  la creación del objeto
+        if($this->conBBDD->connect_errno){
+            throw new Exception("Error en la conexión");
+        }
+        //Mediante este método asignamos el tipo de codificación de la base de datos
+        $this->conBBDD->set_charset("UTF8");
+    }
+    
+    /**
+     * Método para evaluar si un usuario existe dentro de la base de datos con su contraseña correspondiente
+     * @param String $usuario variable con el nombre de usuario a evaluar
+     * @param String $contraseña variable con la contraseña del usuario a evaluar
+     * @return boolean true si el usuario y contraseña existen dentro de la base de datos, false si el usuario o contraseña no existen o están relacionados
+     */
+    public function isValidUser($usuario,$contrasena) {
+        if(!preg_match("/^[0-9a-zA-Z]{1,10}$/",$usuario))
+		throw new Exception("Valor incorrecto en el nombre de usuario");
+	//Filtramos la contraseña
+	if(!preg_match("/^[0-9a-zA-Z]{1,15}$/",$contrasena))
+		throw new Exception("Valor incorrecto en la contraseña");
+        //Variable que recogerá los datos de la consulta
+        $srcDatos = $this->conBBDD->query("call getUsuario('".$usuario."', '".$contrasena."')");
+        return $srcDatos->fetch_object()==null?false:true;
+    }
+    
+    //------------------- Adminitración de NOTICIAS
+    
+    
+    /**
+     * Método para agregar una nueva noticia a la base de datos
+     * @param int $id
+     * @param String $nombre
+     * @param String $descripcion
+     * @param String $fecha
+     * @return boolean 
+     */
+    public function newNoticia($id,$nombre,$descripcion,$fecha) {
+        $sql = "call newNoticia(".$id.",'".$nombre."','".$descripcion."','".$fecha."',1)";
+        return $this->conBBDD->query($sql);
+    }
+     /**
+      * Método para eliminar una noticia
+      * @param int $id
+      * @return boolean
+      */
+    public function deleteNoticia($id) {
+        $sql = "call deleteNoticia(".$id.")";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para editar una noticia
+     * @param int $id
+     * @return boolean
+     */
+    public function editNoticia($id,$nombre,$descripcion,$fecha) {
+        $sql = "call editNoticia(".$id.",'".$nombre."','".$descripcion."','".$fecha."')";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para conseguir todas las noticias
+     * @return aNoticias
+     */
+    public function getNoticias() {
+        //Variable que contendra los datos de las noticias
+        $aNoticias=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getNoticias()");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aNoticias[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aNoticias;
+    }
+    
+    // --------------------Administracion de EVENTOS
+    
+    /**
+     * Método para crear un nuevo evento
+     * @param int $id
+     * @param String $nombre
+     * @param String $descripcion
+     * @param String $fecha
+     * @return boolean
+     */
+    public function newEvento($id,$nombre,$descripcion,$fecha) {
+        $sql = "call newEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."',1)";
+        return $this->conBBDD->query($sql);
+    }
+    
+     /**
+      * Método para eliminar una noticia
+      * @param int $id
+      * @return boolean
+      */
+    public function deleteEvento($id) {
+        $sql = "call deleteEvento(".$id.")";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para editar una noticia
+     * @param int $id
+     * @return boolean
+     */
+    public function editEvento($id,$nombre,$descripcion,$fecha) {
+        $sql = "call editEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."')";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para conseguir todas las noticias
+     * @return aNoticias
+     */
+    public function getEventos() {
+        //Variable que contendra los datos de las noticias
+        $aEventos=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getEventos()");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aEventos[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aEventos;
+    }
+    
+    // ------------------- Administración de Teléfonos
+    
+    
+    /**
+     * Método para agregar un nuevo teléfono
+     * @param int $id
+     * @param String $telefono
+     * @return boolean
+     */
+    public function newTelefono($descripcion,$telefono) {
+        $sql = "call newTelefono('".$descripcion."','".$telefono."');";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para eliminar un teléfono
+     * @param int $id
+     * @return boolean
+     */
+    public function deleteTelefono($descripcion) {
+        $sql = "call deleteTelefono('".$descripcion."')";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para editar un teléfono
+     * @param int $id
+     * @param String $telefono
+     * @return boolean
+     */
+    public function editTelefono($descripcion,$telefono) {
+        $sql = "call editTelefono('".$descripcion."','".$telefono."')";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para conseguir todas las noticias
+     * @return aNoticias
+     */
+    public function getTelefonos() {
+        //Variable que contendra los datos de las noticias
+        $aTelefonos=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getTelefonos()");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aTelefonos[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aTelefonos;
+    }
+    
+    
+    /**
+     * Método para editar los datos del centro
+     * @param String $nombre
+     * @param String $descripcion
+     * @param String $resumen
+     * @param String $direccion
+     * @return boolean
+     */
+    public function editCentro($nombre, $descripcion, $resumen, $direccion) {
+        $sql = "call editCentro('".$nombre."','".$descripcion."','".$resumen."','".$direccion."')";
+        return $this->conBBDD->query($sql);
+    }
+
+    
+    /**
+     * Función para detruir el objeto de la clase y cerrar la conexión
+     */
+    public function __destruct() {
+        $this->conBBDD->close();
+    }
+}

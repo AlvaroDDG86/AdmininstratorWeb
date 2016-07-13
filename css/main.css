@@ -1,0 +1,18 @@
+body{
+	background-color:#CEE3F6;
+}
+
+h1{
+	color:blue;
+	font-family: 'Fjalla One', sans-serif;
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+}
+
+.nav-tabs {
+    margin-bottom: 0;
+}
