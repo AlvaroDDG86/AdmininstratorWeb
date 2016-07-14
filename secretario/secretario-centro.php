@@ -128,7 +128,7 @@
                                             </div>
                                     </div>
                                     <div class="col-xs-10 col-xs-offset-2">
-                                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                                            <button id="btnM" type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Actualizar</button>
                                     </div>
                             </form>
 			</div>

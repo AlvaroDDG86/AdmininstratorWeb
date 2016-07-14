@@ -91,8 +91,8 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
-
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    
     <!-- Theme CSS -->
     <link href="../css/main.css" rel="stylesheet">
 
@@ -150,25 +150,25 @@
 								<div class="form-group">
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="text" class="form-control" id="idField" name="id" placeholder="Id" />
+                                                                            <input type="text" class="form-control" id="idField" name="id" placeholder="Id"  pattern="[0-9]{1.6}" title="Solo números enteros" required/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="text" class="form-control" id="nameField" name="nombre" placeholder="Nombre" />
+                                                                            <input type="text" class="form-control" id="nameField" name="nombre" placeholder="Nombre" required/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <textarea class="form-control" id="descField" name="descripcion" placeholder="Descripción"></textarea>
+                                                                            <textarea class="form-control" id="descField" name="descripcion" placeholder="Descripción" required></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="date" class="form-control" id="dateField" name="fecha" placeholder="Fecha" />
+                                                                            <input type="date" class="form-control" id="dateField" name="fecha" placeholder="DD/MM/YYYY"  pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formado de fecha DD/MM/YYYY"  required/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -176,7 +176,7 @@
 									<button type="file" class="btn btn-primary">Examinar </button>
 								</div>
 								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-primary">Enviar </button>
+									<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
 								</div>
 							</form>
 						</div>
@@ -193,23 +193,23 @@
 								<div class="form-group">
 									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="text" class="form-control" id="nameFieldE" placeholder="Nombre" />
+                                                                            <input type="text" class="form-control" id="nameFieldE" placeholder="Nombre"/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
-										<textarea class="form-control" id="descFieldE" placeholder="Descripción"></textarea>
+                                                                            <textarea class="form-control" id="descFieldE" placeholder="Descripción"></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="date" class="form-control" id="dateFieldE" placeholder="Fecha" />
+                                                                            <input type="date" class="form-control" id="dateFieldE" placeholder="DD/MM/YYYY"/>
 									</div>
 								</div>
 								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-primary">Eliminar </button>
+									<button type="submit" id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
 								</div>
 							</form>
 						</div>
@@ -226,23 +226,23 @@
 								<div class="form-group">
 									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <input type="text" class="form-control" id="nameFieldM" name="nombre" placeholder="Nombre"/>
+                                                                            <input type="text" class="form-control" id="nameFieldM" name="nombre" placeholder="Nombre" required/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
-										<textarea class="form-control" id="descFieldM" name="descripcion" placeholder="Descripción"></textarea>
+                                                                            <textarea class="form-control" id="descFieldM" name="descripcion" placeholder="Descripción" required></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="date" class="form-control" id="dateFieldM" name="fecha" placeholder="Fecha"/>
+                                                                            <input type="date" class="form-control" id="dateFieldM" name="fecha" placeholder="DD/MM/YYYY"  pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formado de fecha DD/MM/YYYY" required/>
 									</div>
 								</div>
 								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-primary">Modificar </button>
+									<button type="submit" id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
 								</div>
 							</form>
 						</div>

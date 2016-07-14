@@ -42,7 +42,7 @@
             if($oCentro->deleteProfesor($_POST["idEliminar"])){
                 $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Profesor eliminado</div>';
             }else{
-                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al eliminar profesor</div>';
+                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al eliminar profesor - Comprueba si está asociado a un curso</div>';
             }
          }
         catch (Exception $x)
@@ -151,29 +151,29 @@
 							<div class="form-group">
 								<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="idField" name="idNuevo" placeholder="Id" />
+                                                                    <input type="text" class="form-control" id="idField" name="idNuevo" placeholder="Id" pattern="[0-9]{1.6}" title="Solo números enteros"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="nameField" name="nombreNuevo" placeholder="Nombre" />
+                                                                    <input type="text" class="form-control" id="nameField" name="nombreNuevo" placeholder="Nombre" required/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="apellidosField" name="apellidosNuevo" placeholder="Apellidos" />
+                                                                    <input type="text" class="form-control" id="apellidosField" name="apellidosNuevo" placeholder="Apellidos" required/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="dirField" class="col-xs-12 col-sm-2">Email</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="email" class="form-control" id="dirField" name="direccionNuevo" placeholder="Dirección" />
+                                                                    <input type="email" class="form-control" id="dirField" name="direccionNuevo" placeholder="Dirección" required/>
 								</div>
 							</div>
 							<div class="col-xs-10 col-xs-offset-2">
-								<button type="submit" class="btn btn-primary">Enviar </button>
+								<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
 							</div>
 						</form>
 					</div>
@@ -206,7 +206,7 @@
 								</div>
 							</div>
 							<div class="col-xs-10 col-xs-offset-2">
-								<button type="submit" class="btn btn-primary">Eliminar </button>
+								<button type="submit" id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
 							</div>
 						</form>
 					</div>
@@ -223,23 +223,23 @@
 							<div class="form-group">
 								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="nombreFieldM" name="nombreModificar" placeholder="Nombre" />
+                                                                    <input type="text" class="form-control" id="nombreFieldM" name="nombreModificar" placeholder="Nombre" required/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="apellidosFieldM" name="apellidosModificar" placeholder="Apellidos" />
+                                                                    <input type="text" class="form-control" id="apellidosFieldM" name="apellidosModificar" placeholder="Apellidos" required/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="email" class="form-control" id="emailFieldM" name="direccionModificar" placeholder="Dirección" />
+                                                                    <input type="email" class="form-control" id="emailFieldM" name="direccionModificar" placeholder="Dirección" required/>
 								</div>
 							</div>
 							<div class="col-xs-10 col-xs-offset-2">
-								<button type="submit" class="btn btn-primary">Modificar </button>
+								<button type="submit"  id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
 							</div>
 						</form>
 					</div>

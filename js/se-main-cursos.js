@@ -1,5 +1,11 @@
 $(document).ready(function(){
-	
+    $('.btn').on('click', function() {
+        var $this = $(this);
+        $this.button('loading');
+        setTimeout(function() {
+           $this.button('reset');
+        }, 8000);
+    });
     aCursos=[];  
     //Petici�n post para rellenar la lista de los cursos
     $.post("../inc/CentroService.php",
@@ -45,11 +51,13 @@ $(document).ready(function(){
             $("#nameFieldE").val("");
             $("#descFieldE").val("");
             $("#horasFieldE").val("");
+            $("#btnE").prop('disabled', true);
         }else{
             var id=$("#lstCursosEliminar option:selected" ).attr('id');
             $("#nameFieldE").val( aCursos[id].nombreCurso );
             $("#descFieldE").val( aCursos[id].descripcionCurso );
             $("#horasFieldE").val( aCursos[id].horasCurso );
+            $("#btnE").prop('disabled', false);
         }
     });
     
@@ -61,12 +69,14 @@ $(document).ready(function(){
             $("#descFieldM").val("");
             $("#horasFieldM").val("");
             $("#lstProfesorModificar").val("-1");
+            $("#btnM").prop('disabled', true);
         }else{
             var id=$("#lstCursosModificar option:selected" ).attr('id');
             $("#nameFieldM").val( aCursos[id].nombreCurso );
             $("#descFieldM").val( aCursos[id].descripcionCurso );
             $("#horasFieldM").val( aCursos[id].horasCurso );
             $("#lstProfesorModificar").val(aCursos[id].codigoProfesor);
+            $("#btnM").prop('disabled', false);
         }
     });
     

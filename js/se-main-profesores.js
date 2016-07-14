@@ -1,5 +1,11 @@
 $(document).ready(function(){
-	
+    $('.btn').on('click', function() {
+        var $this = $(this);
+        $this.button('loading');
+        setTimeout(function() {
+           $this.button('reset');
+        }, 8000);
+    });
     aProfesores=[];
     
     //Petici�n post para rellenar la lista de los teléfonos
@@ -28,11 +34,13 @@ $(document).ready(function(){
              $("#nombreFieldE").val("");
             $("#apellidosFieldE").val("");
             $("#emailFieldE").val("");
+            $("#btnE").prop('disabled', true);
         }else{
              var id=$("#lstProfesoresEliminar option:selected" ).attr('id');
             $("#nombreFieldE").val( aProfesores[id].nombreProfesor );
             $("#apellidosFieldE").val( aProfesores[id].apellidosProfesor );
             $("#emailFieldE").val( aProfesores[id].direccionProfesor );
+            $("#btnE").prop('disabled', false);
         }
     });
     
@@ -43,11 +51,13 @@ $(document).ready(function(){
              $("#nombreFieldM").val("");
             $("#apellidosFieldM").val("");
             $("#emailFieldM").val("");
+            $("#btnM").prop('disabled', true);
         }else{
             var id=$("#lstProfesoresModificar option:selected" ).attr('id');
             $("#nombreFieldM").val( aProfesores[id].nombreProfesor );
             $("#apellidosFieldM").val( aProfesores[id].apellidosProfesor );
             $("#emailFieldM").val( aProfesores[id].direccionProfesor );
+            $("#btnM").prop('disabled', false);
         }
     });    
     

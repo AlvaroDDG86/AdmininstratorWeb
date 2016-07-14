@@ -1,5 +1,11 @@
 $(document).ready(function(){
-	
+    $('.btn').on('click', function() {
+        var $this = $(this);
+        $this.button('loading');
+        setTimeout(function() {
+           $this.button('reset');
+        }, 8000);
+    });
     aTelefonos=[];
     
     //Petici�n post para rellenar la lista de los teléfonos
@@ -26,9 +32,11 @@ $(document).ready(function(){
     $('#lstTelefonosEliminar').change(function() {
         if($("#lstTelefonosEliminar option:selected" ).val()=="-1"){
             $("#phoneFieldE").val("");
+            $("#btnE").prop('disabled', true);
         }else{
             var id=$("#lstTelefonosEliminar option:selected" ).attr('id');
             $("#phoneFieldE").val( aTelefonos[id].telefono );
+            $("#btnE").prop('disabled', false);
         }
     });
     
@@ -37,9 +45,11 @@ $(document).ready(function(){
     $('#lstTelefonosModificar').change(function() {
         if($("#lstTelefonosModificar option:selected" ).val()=="-1"){
             $("#phoneFieldM").val("");
+            $("#btnM").prop('disabled', true);
         }else{
             var id=$("#lstTelefonosModificar option:selected" ).attr('id');
             $("#phoneFieldM").val( aTelefonos[id].telefono );
+            $("#btnM").prop('disabled', false);
         }
     });    
     

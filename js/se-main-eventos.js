@@ -1,5 +1,12 @@
 $(document).ready(function(){
-	
+    $('.btn').on('click', function() {
+        var $this = $(this);
+        $this.button('loading');
+        setTimeout(function() {
+           $this.button('reset');
+        }, 8000);
+    });
+    
     aEventos=[];  
     //Petici�n post para rellenar la lista de las noticias
     $.post("../inc/CentroService.php",
@@ -26,11 +33,13 @@ $(document).ready(function(){
             $("#nameFieldE").val("");
             $("#descFieldE").val("");
             $("#dateFieldE").val("");
+            $("#btnE").prop('disabled', true);
         }else{
             var id=$("#lstEventosEliminar option:selected" ).attr('id');
             $("#nameFieldE").val( aEventos[id].nombreEvento );
             $("#descFieldE").val( aEventos[id].descripcionEvento );
             $("#dateFieldE").val( aEventos[id].fechaEvento );
+            $("#btnE").prop('disabled', false);
         }
     });
     
@@ -41,11 +50,13 @@ $(document).ready(function(){
             $("#nameFieldM").val("");
             $("#descFieldM").val("");
             $("#dateFieldM").val("");
+            $("#btnM").prop('disabled', true);
         }else{
             var id=$("#lstEventosModificar option:selected" ).attr('id');
             $("#nameFieldM").val( aEventos[id].nombreEvento );
             $("#descFieldM").val( aEventos[id].descripcionEvento );
             $("#dateFieldM").val( aEventos[id].fechaEvento );
+            $("#btnM").prop('disabled', false);
         }
     });
     

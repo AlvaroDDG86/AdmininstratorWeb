@@ -156,17 +156,17 @@
 								<div class="form-group">
 									<label for="desField" class="col-xs-12 col-sm-2">Descripción</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="text" class="form-control" id="desField" placeholder="Descripción" name="idNuevo"/>
+                                                                            <input type="text" class="form-control" id="desField" placeholder="Descripción" name="idNuevo"required/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="phoneField" class="col-xs-12 col-sm-2">Teléfono</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <input type="phone" class="form-control" id="phoneField" name="telefonoN" placeholder="Teléfono" />
+                                                                            <input type="phone" class="form-control" id="phoneField" name="telefonoN" placeholder="Teléfono" required/>
 									</div>
 								</div>
 								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-primary">Enviar </button>
+									<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
 								</div>
 							</form>
 						</div>
@@ -187,7 +187,7 @@
 									</div>
 								</div>
 								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-primary">Eliminar </button>
+									<button type="submit"  id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
 								</div>
 							</form>
 						</div>
@@ -204,11 +204,11 @@
 								<div class="form-group">
 									<label for="phoneField" class="col-xs-12 col-sm-2">Teléfono</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="phone" class="form-control" id="phoneFieldM" name="telefonoM" placeholder="Teléfono" />
+                                                                            <input type="phone" class="form-control" id="phoneFieldM" name="telefonoM" placeholder="Teléfono" required/>
 									</div>
 								</div>
 								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-primary">Modificar </button>
+									<button type="submit" id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
 								</div>
 							</form>
 						</div>

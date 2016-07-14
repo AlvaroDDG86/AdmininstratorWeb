@@ -1,5 +1,12 @@
 $(document).ready(function(){
-	
+    $('.btn').on('click', function() {
+        var $this = $(this);
+        $this.button('loading');
+        setTimeout(function() {
+           $this.button('reset');
+        }, 8000);
+    });
+    $('.datepicker').datepicker();
     aNoticias=[];  
     //Petici�n post para rellenar la lista de las noticias
     $.post("../inc/CentroService.php",
@@ -26,11 +33,13 @@ $(document).ready(function(){
             $("#nameFieldE").val("");
             $("#descFieldE").val("");
             $("#dateFieldE").val("");
+            $("#btnE").prop('disabled', true);
         }else{
             var id=$("#lstNoticiasEliminar option:selected" ).attr('id');
             $("#nameFieldE").val( aNoticias[id].nombreNoticia );
             $("#descFieldE").val( aNoticias[id].descripcionNoticia );
             $("#dateFieldE").val( aNoticias[id].fechaNoticia );
+            $("#btnE").prop('disabled', false);
         }
     });
     
@@ -38,14 +47,16 @@ $(document).ready(function(){
      //Actualizamos los campos cuando haya un cambio en la select
     $('#lstNoticiasModificar').change(function() {
         if($("#lstNoticiasModificar option:selected" ).val()=="-1"){
-            $("#nameFieldE").val("");
-            $("#descFieldE").val("");
-            $("#dateFieldE").val("");
+            $("#nameFieldM").val("");
+            $("#descFieldM").val("");
+            $("#dateFieldM").val("");
+            $("#btnM").prop('disabled', true);
         }else{
             var id=$("#lstNoticiasModificar option:selected" ).attr('id');
             $("#nameFieldM").val( aNoticias[id].nombreNoticia );
             $("#descFieldM").val( aNoticias[id].descripcionNoticia );
             $("#dateFieldM").val( aNoticias[id].fechaNoticia );
+            $("#btnM").prop('disabled', false);
         }
     });
     
