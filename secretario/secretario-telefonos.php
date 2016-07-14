@@ -32,20 +32,6 @@
             exit;
         }
     }
-    if(isset($_POST["idNuevo"]) && isset($_POST["telefonoN"])){
-        try
-        {
-            if($oCentro->newTelefono($_POST["idNuevo"],$_POST["telefonoN"])){
-                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nuevo teléfono agregado correctamente</div>';
-            }else{
-                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al crear teléfono</div>';
-            }
-        }
-        catch (Exception $x)
-        {
-            exit;
-        }
-    }
     if(isset($_POST["idEliminar"]) && isset($_POST["telefonoE"])){
         try
         {
@@ -97,7 +83,7 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
     <link href="../css/main.css" rel="stylesheet">
@@ -108,15 +94,22 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+ 
 </head>
 
-<body class="index">
-
+<body class="index"> 
+        <!-- Modal -->
+        <div class="modal" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <img src="../img/loading.gif" width="400" height="400" alt="loading" class="modal-body"/>
+                </div>
+            </div>
+        </div>
+        
 	<div class="container">
 		<div class="page-header">
 			<h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>
-                        <a href="../desconectar.php">desconectar</a>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -137,6 +130,9 @@
 						<li class="active"><a href="secretario-telefonos.php">Teléfonos</a></li>
 						<li><a href="secretario-centro.php">Centro</a></li>
 					</ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="../desconectar.php"><span class="glyphicon glyphicon-log-out"></span> Desconectar</a></li>
+                                        </ul>
 				</div>
 			</div>
 		</div>
@@ -219,7 +215,7 @@
                     </div>
 		</div>
     </div>
-
+    
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -238,7 +234,7 @@
     
      <!-- Theme JavaScript -->
     <script src="../js/se-main-telefonos.js"></script>
-
+    
 </body>
 
 </html>

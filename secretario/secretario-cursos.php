@@ -108,10 +108,17 @@
 </head>
 
 <body class="index">
+        <!-- Modal -->
+        <div class="modal" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <img src="../img/loading.gif" width="400" height="400" alt="loading" class="modal-body"/>
+                </div>
+            </div>
+        </div>
 	<div class="container">
 		<div class="page-header">
 			<h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>
-                        <a href="../desconectar.php">desconectar</a>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -132,6 +139,9 @@
 						<li><a href="secretario-telefonos.php">Teléfonos</a></li>
 						<li><a href="secretario-centro.php">Centro</a></li>
 					</ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="../desconectar.php"><span class="glyphicon glyphicon-log-out"></span> Desconectar</a></li>
+                                        </ul>
 				</div>
 		</div>
 		</div>
@@ -170,7 +180,7 @@
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Horas</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <input type="date" class="form-control" id="dateField" name="horasNuevo" placeholder="Horas" pattern="[0-9]{1,3}" required/>
+                                                                            <input type="number" class="form-control" id="dateField" name="horasNuevo" placeholder="Horas" pattern="[0-9]{1,3}" required/>
 									</div>
 								</div>
                                                                 <div class="form-group">
@@ -211,7 +221,7 @@
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Horas</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="date" class="form-control" id="horasFieldE" placeholder="Horas" />
+										<input type="number" class="form-control" id="horasFieldE" placeholder="Horas" />
 									</div>
 								</div>
 								<div class="col-xs-10 col-xs-offset-2">
@@ -244,7 +254,7 @@
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Horas</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <input type="date" class="form-control datepicker" id="horasFieldM" name="horasModificar" placeholder="Horas" pattern="[0-9]{1,3}" required/>
+                                                                            <input type="number" class="form-control datepicker" id="horasFieldM" name="horasModificar" placeholder="Horas" pattern="[0-9]{1,3}" required/>
 									</div>
 								</div>
                                                                  <div class="form-group">

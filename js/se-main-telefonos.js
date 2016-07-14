@@ -1,10 +1,16 @@
 $(document).ready(function(){
+    $("#myModal").modal("hide");
+    
+    $(".form-horizontal").submit(function(){
+        $("#myModal").modal("show");
+    });
+    
     $('.btn').on('click', function() {
         var $this = $(this);
         $this.button('loading');
         setTimeout(function() {
-           $this.button('reset');
-        }, 8000);
+           $this.button('reset'); 
+        }, 2000);
     });
     aTelefonos=[];
     
@@ -58,5 +64,4 @@ $(document).ready(function(){
     //Forzamos el change para que cargen los datos
     $( "#lstTelefonosModificar" ).change();
 
-;
 });

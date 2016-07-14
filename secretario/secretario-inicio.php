@@ -38,12 +38,18 @@
 </head>
 
 <body class="index">
-
+         <!-- Modal -->
+        <div class="modal" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <img src="../img/loading.gif" width="400" height="400" alt="loading" class="modal-body"/>
+                </div>
+            </div>
+        </div>
 	<div class="container">
                 
 		<div class="page-header">
                     <h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>  
-                    <a href="../desconectar.php">desconectar</a>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -64,6 +70,9 @@
 						<li><a href="secretario-telefonos.php">Teléfonos</a></li>
 						<li><a href="secretario-centro.php">Centro</a></li>
 					</ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="../desconectar.php"><span class="glyphicon glyphicon-log-out"></span> Desconectar</a></li>
+                                        </ul>
 				</div>
 			</div>
 		</div>

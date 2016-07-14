@@ -16,3 +16,9 @@ h1{
 .nav-tabs {
     margin-bottom: 0;
 }
+
+.modal-content{
+    background-color: transparent;
+    box-shadow: none;
+    border:none;
+}

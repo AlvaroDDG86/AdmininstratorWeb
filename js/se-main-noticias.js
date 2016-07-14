@@ -1,12 +1,18 @@
 $(document).ready(function(){
+    $("#myModal").modal("hide");
+    
+    $(".form-horizontal").submit(function(){
+        $("#myModal").modal("show");
+    });
+    
     $('.btn').on('click', function() {
         var $this = $(this);
         $this.button('loading');
         setTimeout(function() {
            $this.button('reset');
-        }, 8000);
+        }, 2000);
     });
-    $('.datepicker').datepicker();
+
     aNoticias=[];  
     //Petici�n post para rellenar la lista de las noticias
     $.post("../inc/CentroService.php",

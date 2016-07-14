@@ -307,12 +307,12 @@ class CentroClass {
     * @param int $id
     * @param String $nombre
     * @param String $descripcion
-    * @param String $fecha
-    * @param String $profesor
+    * @param int $horas
+    * @param int $profesor
     * @return boolean
     */
-    public function editCurso($id,$nombre,$descripcion,$fecha,$profesor) {
-        $sql = "call editCurso(".$id.",'".$nombre."','".$descripcion."','".$fecha."','".$profesor."');";
+    public function editCurso($id,$nombre,$descripcion,$horas,$profesor) {
+        $sql = "call editCurso(".$id.",'".$nombre."','".$descripcion."',".$horas.",".$profesor.");";
         return $this->conBBDD->query($sql);
     }
     

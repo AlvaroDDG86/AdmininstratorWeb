@@ -84,7 +84,6 @@ if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene u
     <![endif]-->
 
 </head>
-
 <body class="index">
 
 	<div class="container">
@@ -100,13 +99,13 @@ if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene u
 					<div class="form-group">
 						<label for="nameField" class="col-xs-12">Nombre</label>
 						<div class="col-xs-12">
-							<input type="text" class="form-control" id="nameField" name="usuario" placeholder="Nombre" />
+                                                    <input type="text" class="form-control" id="nameField" name="usuario" placeholder="Nombre" required />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="passField" class="col-xs-12">Password</label>
 						<div class="col-xs-12">
-							<input type="password" class="form-control" id="passField" name="password" placeholder="Password" />
+                                                    <input type="password" class="form-control" id="passField" name="password" placeholder="Password" required/>
 						</div>
 					</div>
 					<button type="submit" class="btn btn-primary col-xs-12">Entrar</button>
