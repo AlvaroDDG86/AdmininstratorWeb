@@ -16,6 +16,14 @@ class CentroClass {
     //Variable que contendra un objeto de la conexión
     private $conBBDD; 
     
+    /**
+     * Método constructor de la clase, que se inicializia la conexión a la base de datos
+     * @param String $host
+     * @param String $usuario
+     * @param String $password
+     * @param String $baseDatos
+     * @throws Exception
+     */    
     public function __construct($host, $usuario, $password, $baseDatos) {
         //Se inicializa el objeto sqli con los parámetros del constructor
         $this->conBBDD=new mysqli($host,$usuario,$password,$baseDatos);
@@ -44,7 +52,9 @@ class CentroClass {
         return $srcDatos->fetch_object()==null?false:true;
     }
     
-    //------------------- Adminitración de NOTICIAS
+    
+
+    //Adminitración de NOTICIAS
     
     
     /**
@@ -97,7 +107,9 @@ class CentroClass {
         return $aNoticias;
     }
     
-    // --------------------Administracion de EVENTOS
+    
+    
+    //Administracion de EVENTOS
     
     /**
      * Método para crear un nuevo evento
@@ -150,7 +162,9 @@ class CentroClass {
         return $aEventos;
     }
     
-    // ------------------- Administración de Teléfonos
+    
+    
+    //Administración de Teléfonos
     
     
     /**
@@ -203,7 +217,9 @@ class CentroClass {
         return $aTelefonos;
     }
     
-    //  --------------------------------------------- Administracion PROFESORES
+    
+    
+    //Administracion PROFESORES
     
     /**
      * Método para agregar un nuevo profesor
@@ -259,7 +275,68 @@ class CentroClass {
         return $aProfesores;
     }
     
-    // --------------------------Administración para CENTRO
+    
+    
+    
+    //Administración para los CURSOS
+    /**
+     * Método para agregar un nuevo curso a la base de datos
+     * @param int $id
+     * @param String $nombre
+     * @param String $descripcion
+     * @param String $horas
+     * @return boolean 
+     */
+    public function newCurso($id,$nombre,$descripcion,$fecha,$profesor) {
+        $sql = "call newCurso(".$id.",'".$nombre."','".$descripcion."','".$fecha."','".$profesor."');";
+        return $this->conBBDD->query($sql);
+    }
+    
+     /**
+      * Método para eliminar un curso
+      * @param int $id
+      * @return boolean
+      */
+    public function deleteCurso($id) {
+        $sql = "call deleteCurso(".$id.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+   /**
+    * Método para editar un curso
+    * @param int $id
+    * @param String $nombre
+    * @param String $descripcion
+    * @param String $fecha
+    * @param String $profesor
+    * @return boolean
+    */
+    public function editCurso($id,$nombre,$descripcion,$fecha,$profesor) {
+        $sql = "call editCurso(".$id.",'".$nombre."','".$descripcion."','".$fecha."','".$profesor."');";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para conseguir todos los cursos
+     * @return aCursos
+     */
+    public function getCursos() {
+        //Variable que contendra los datos de las noticias
+        $aCursos=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getCursos();");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aCursos[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aCursos;
+    }
+    
+    
+    
+    //Administración para CENTRO
     
     /**
      * Método para editar los datos del centro
@@ -282,6 +359,10 @@ class CentroClass {
         $sql = "call getCentro();";
         return $this->conBBDD->query($sql)->fetch_object();
     }
+    
+    
+    
+    
     
     /**
      * Función para detruir el objeto de la clase y cerrar la conexión
