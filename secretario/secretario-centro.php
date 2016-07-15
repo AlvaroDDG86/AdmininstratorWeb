@@ -129,7 +129,7 @@
                                                 <input type="text" class="form-control" id="dirField" name="direccion" placeholder="Dirección" required/>
                                             </div>
                                     </div>
-                                    <div class="col-xs-10 col-xs-offset-2">
+                                    <div class="col-xs-offset-2">
                                             <button id="btnM" type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Actualizar</button>
                                     </div>
                             </form>

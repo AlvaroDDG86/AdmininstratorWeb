@@ -1,3 +1,6 @@
+<?php
+    include '../inc/validacion.php'; //INclusión del archivo, para restringir el acceso
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +41,7 @@
 
 	<div class="container">
 		<div class="page-header">
-			<h1>Administración <small>Profesor</small></h1>
+			<h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">

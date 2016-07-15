@@ -88,7 +88,6 @@
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -148,7 +147,6 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
                             <h3>Cursos</h3> 
-                            
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-tabs">
@@ -191,7 +189,7 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+								<div class="col-xs-offset-2">
 									<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
 								</div>
 							</form>
@@ -209,22 +207,22 @@
 								<div class="form-group">
 									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="text" class="form-control" id="nameFieldE" placeholder="Nombre" />
+										<input type="text" class="form-control" id="nameFieldE" placeholder="Nombre" readonly/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
-										<textarea class="form-control" id="descFieldE" placeholder="Descripción"></textarea>
+										<textarea class="form-control" id="descFieldE" placeholder="Descripción" readonly></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Horas</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="number" class="form-control" id="horasFieldE" placeholder="Horas" />
+										<input type="number" class="form-control" id="horasFieldE" placeholder="Horas" readonly/>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+								<div class="col-xs-offset-2">
 									<button type="submit" id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
 								</div>
 							</form>
@@ -265,7 +263,7 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+								<div class="col-xs-offset-2">
 									<button type="submit" id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
 								</div>
 							</form>

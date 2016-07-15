@@ -161,7 +161,7 @@
                                                                             <input type="phone" class="form-control" id="phoneField" name="telefonoN" placeholder="Teléfono" required/>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+								<div class="col-xs-offset-2">
 									<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
 								</div>
 							</form>
@@ -179,10 +179,10 @@
 								<div class="form-group">
 									<label for="phoneField" class="col-xs-12 col-sm-2">Teléfono</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="phone" class="form-control" id="phoneFieldE" name="telefonoE" placeholder="Teléfono" />
+										<input type="phone" class="form-control" id="phoneFieldE" name="telefonoE" placeholder="Teléfono" readonly />
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+								<div class="col-xs-offset-2">
 									<button type="submit"  id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
 								</div>
 							</form>
@@ -203,7 +203,7 @@
                                                                             <input type="phone" class="form-control" id="phoneFieldM" name="telefonoM" placeholder="Teléfono" required/>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+								<div class="col-xs-offset-2">
 									<button type="submit" id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
 								</div>
 							</form>

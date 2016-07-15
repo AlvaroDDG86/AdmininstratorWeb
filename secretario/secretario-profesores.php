@@ -181,7 +181,7 @@
                                                                     <input type="email" class="form-control" id="dirField" name="direccionNuevo" placeholder="Dirección" required/>
 								</div>
 							</div>
-							<div class="col-xs-10 col-xs-offset-2">
+							<div class="col-xs-offset-2">
 								<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
 							</div>
 						</form>
@@ -199,22 +199,22 @@
 							<div class="form-group">
 								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="nombreFieldE" name="nombreEliminar" placeholder="Nombre" />
+                                                                    <input type="text" class="form-control" id="nombreFieldE" name="nombreEliminar" placeholder="Nombre" readonly/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="apellidosFieldE" name="apellidosEliminar" placeholder="Apellidos" />
+                                                                    <input type="text" class="form-control" id="apellidosFieldE" name="apellidosEliminar" placeholder="Apellidos" readonly/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
 								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="email" class="form-control" id="emailFieldE" name="direccionEliminar" placeholder="Dirección" />
+                                                                    <input type="email" class="form-control" id="emailFieldE" name="direccionEliminar" placeholder="Dirección" readonly/>
 								</div>
 							</div>
-							<div class="col-xs-10 col-xs-offset-2">
+							<div class="col-xs-offset-2">
 								<button type="submit" id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
 							</div>
 						</form>
@@ -247,7 +247,7 @@
                                                                     <input type="email" class="form-control" id="emailFieldM" name="direccionModificar" placeholder="Dirección" required/>
 								</div>
 							</div>
-							<div class="col-xs-10 col-xs-offset-2">
+							<div class="col-xs-offset-2">
 								<button type="submit"  id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
 							</div>
 						</form>

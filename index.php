@@ -35,12 +35,15 @@ if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene u
         {
             if($_POST["usuario"] == "secretario"){
                 header("location:secretario/secretario-inicio.php"); //Definimos donde a donde enviar
+                 $_SESSION["usuario"]=$_POST["usuario"]; //Ponemos una nueva variable, con el nombre del usuario conectado
             }else{
                 header("location:profesor/profesor-inicio.php"); //Definimos donde a donde enviar
+                $nombre = $oCentro->getNombre($_POST["usuario"]);
+                 $_SESSION["usuario"]=$nombre;//Ponemos una nueva variable, con el nombre del usuario conectado
             }
             session_name("conexion"); //Le damos un nombre a la sesión
             session_start(); //La inicializamos
-            $_SESSION["usuario"]=$_POST["usuario"]; //Ponemos una nueva variable, con el nombre del usuario conectado
+           
             exit; //Salimos
         }
     }
@@ -73,8 +76,8 @@ if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene u
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-    <!-- Theme CSS -->
-    <link href="css/agency.min.css" rel="stylesheet">
+     <!-- Theme CSS -->
+    <link href="css/main.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -90,7 +93,7 @@ if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene u
 		<div class="page-header">
 			<h1>Web de administración</h1>
 		</div>
-		<div class="panel panel-default col-sm-offset-3 col-sm-6 col-xs-12">
+		<div class="panel panel-default col-sm-offset-3 col-sm-6 col-xs-12" id="panelLogin">
 			<div class="panel-heading">
 				<h3>Acceso:</h3>
 			</div>
@@ -110,6 +113,9 @@ if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene u
 					</div>
 					<button type="submit" class="btn btn-primary col-xs-12">Entrar</button>
 				</form>
+			</div>
+                        <div class="panel-footer">
+                            <a href="mailto:alvarodediosgarcia1986@gmail.com"><span class="glyphicon glyphicon-send"></span> Contacto</a>
 			</div>
 		</div>
     </div>

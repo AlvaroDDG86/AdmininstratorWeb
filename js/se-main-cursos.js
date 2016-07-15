@@ -89,8 +89,8 @@ $(document).ready(function(){
     
     
     //Forzamos el change para que cargen los datos
-    $( "#lstNoticiasEliminar" ).change();
+    $( "#lstCursosEliminar" ).change();
     //Forzamos el change para que cargen los datos
-    $( "#lstNoticiasModificar" ).change();
+    $( "#lstCursosModificar" ).change();
 
 });

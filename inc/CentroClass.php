@@ -52,6 +52,15 @@ class CentroClass {
         return $srcDatos->fetch_object()==null?false:true;
     }
     
+    /**
+     * Método para devolver un nombre pasándolse un id de usuario
+     * @param int $id
+     * @return boolean
+     */
+    public function getNombre($id) {
+        $sql = "call getNombre(".$id.");";        
+        return $this->conBBDD->query($sql)->fetch_row();
+    }
     
 
     //Adminitración de NOTICIAS
@@ -119,8 +128,8 @@ class CentroClass {
      * @param String $fecha
      * @return boolean
      */
-    public function newEvento($id,$nombre,$descripcion,$fecha) {
-        $sql = "call newEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."',1);";
+    public function newEvento($id,$nombre,$descripcion,$fecha, $imagen) {
+        $sql = "call newEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."','".$imagen."',1);";
         return $this->conBBDD->query($sql);
     }
     
@@ -139,8 +148,8 @@ class CentroClass {
      * @param int $id
      * @return boolean
      */
-    public function editEvento($id,$nombre,$descripcion,$fecha) {
-        $sql = "call editEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."');";
+    public function editEvento($id,$nombre,$descripcion,$fecha, $imagen) {
+        $sql = "call editEvento(".$id.",'".$nombre."','".$descripcion."','".$fecha."','".$imagen."');";
         return $this->conBBDD->query($sql);
     }
     

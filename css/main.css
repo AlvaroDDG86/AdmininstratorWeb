@@ -1,9 +1,9 @@
 body{
-	background-color:#CEE3F6;
+	background-color:#222930;
 }
 
 h1{
-	color:blue;
+	color:#4EB1BA;
 	font-family: 'Fjalla One', sans-serif;
 }
 
@@ -21,4 +21,64 @@ h1{
     background-color: transparent;
     box-shadow: none;
     border:none;
+}
+
+#panelLogin{
+    background-color: #4EB1BA;
+}
+
+.btn-primary {
+    box-shadow: 2px 4px 10px #000000; 
+    color:#E9E9E9;
+    background-color: #4EB1BA;
+    transition: 0.5s ease-in-out;
+}
+
+.btn-primary:hover {
+    box-shadow: 1px 2px 5px #000000; 
+    color:#E9E9E9;
+    background-color: #2B7D84;
+}
+
+.btn-primary:hover {
+    color:#E9E9E9;
+    background-color: #2B7D89;
+}
+
+.panel-default > .panel-heading {
+    color:#E9E9E9;
+    background-color:  #4EB1BA;
+}
+
+.panel-default > .panel-body {
+    background-color:  #E9E9E9;
+}
+
+.panel-default > .panel-footer {
+    color:#E9E9E9;
+    background-color:  #4EB1BA;
+}
+
+.panel-default > .panel-footer > a{
+    color:#E9E9E9;
+}
+
+.form-control:focus {
+  border-color: #4EB1BA;
+}
+
+.tab-content{
+    background-color:white;
+}
+
+li a{
+    color:#4EB1BA;
+}
+
+.navbar-default { 
+    background:#4EB1BA; 
+}
+
+.navbar-collapse > .navbar-nav > li > a{
+    color:#E9E9E9;
 }

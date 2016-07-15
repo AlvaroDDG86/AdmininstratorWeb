@@ -183,9 +183,11 @@
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Imagen</label>
-									<button type="file" class="btn btn-primary">Examinar </button>
+									<div class="col-xs-12 col-sm-10">
+                                                                            <input type="file" class="btn btn-primary btn-xs" name="imagenM" accept="image/*" id="imagenFieldN">
+									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+								<div class="col-xs-offset-2">
 									<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
 								</div>
 							</form>
@@ -203,22 +205,22 @@
 								<div class="form-group">
 									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <input type="text" class="form-control" id="nameFieldE" placeholder="Nombre"/>
+                                                                            <input type="text" class="form-control" id="nameFieldE" placeholder="Nombre" readonly/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <textarea class="form-control" id="descFieldE" placeholder="Descripción"></textarea>
+                                                                            <textarea class="form-control" id="descFieldE" placeholder="Descripción" readonly></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <input type="date" class="form-control" id="dateFieldE" placeholder="DD/MM/YYYY"/>
+                                                                            <input type="date" class="form-control" id="dateFieldE" placeholder="DD/MM/YYYY" readonly/>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+								<div class="col-xs-offset-2">
 									<button type="submit" id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
 								</div>
 							</form>
@@ -251,7 +253,14 @@
                                                                             <input type="date" class="form-control" id="dateFieldM" name="fecha" placeholder="DD/MM/YYYY"  pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formado de fecha DD/MM/YYYY" required/>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
+                                                                <div class="form-group">
+									<label for="dateField" class="col-xs-12 col-sm-2">Imagen</label>
+                                                                        <div class="col-xs-12 col-sm-10">
+                                                                            <input type="file" class="btn btn-primary btn-xs" name="imagenM" accept="image/*" id="imagenFieldM">
+                                                                            <span class="help-block">Sino seleccionas imagen, el campo imagen quedará vacío</span>
+									</div>
+								</div>
+								<div class="col-xs-offset-2">
 									<button type="submit" id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
 								</div>
 							</form>
