@@ -1,3 +1,76 @@
+<?php
+    include '../inc/validacion.php'; //INclusión del archivo, para restringir el acceso
+    $result="";
+    try
+    {
+        include_once '../inc/CentroConstants.php';
+        include_once '../inc/CentroClass.php';
+    }
+    catch(Exception $e)
+    {
+        echo "no existen los ficheros de configuración";
+    }
+    try
+    {
+        $oCentro=new CentroClass(DBHOST,DBUSER,DBPASS,DBNAME);//Creamos un objeto de nuestra clase, con los valores por defecto del constructor
+    }
+    catch(Exception $e)
+    {
+        echo "no se ha podido conectar con la base de datos";
+    }
+    if(isset($_POST["id"]) && isset($_POST["cursoN"]) && isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["fecha"])){
+        try
+        {
+            $id=$_POST["id"];
+            $curso=$_POST["cursoN"];
+            $nombre=$_POST["nombre"];
+            $descripcion=$_POST["descripcion"];
+            $fecha=$_POST["fecha"];
+            if($oCentro->newTarea($id, $curso, $nombre, $descripcion, $fecha)){
+                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nueva tarea agregada correctamente</div>';
+            }else{
+                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al crear tarea</div>';
+            }
+        }
+        catch (Exception $x)
+        {
+            exit;
+        }
+    }
+    if(isset($_POST["idEliminar"])){
+        try
+        {
+            if($oCentro->deleteTarea($_POST["idEliminar"])){
+                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Tarea eliminada</div>';
+            }else{
+                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al eliminar tarea</div>';
+            }
+         }
+        catch (Exception $x)
+        {
+            exit;
+        }
+    }
+     if(isset($_POST["idModificar"]) && isset($_POST["cursoM"]) && isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["fecha"])){
+        try
+        {
+            $id=$_POST["idModificar"];
+            $curso=$_POST["cursoM"];
+            $nombre=$_POST["nombre"];
+            $descripcion=$_POST["descripcion"];
+            $fecha=$_POST["fecha"];
+            if($oCentro->editTarea($id, $curso, $nombre, $descripcion, $fecha)){
+                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Tarea actualizada</div>';
+            }else{
+                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al actualizar Tarea</div>';
+            }
+        }
+        catch (Exception $x)
+        {
+            exit;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +96,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
-     <link href="../css/main-p.css" rel="stylesheet">
+     <link href="../css/main.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,10 +108,17 @@
 </head>
 
 <body class="index">
-
+        <!-- Modal -->
+        <div class="modal" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <img src="../img/loading.gif" width="400" height="400" alt="loading" class="modal-body"/>
+                </div>
+            </div>
+        </div>
 	<div class="container">
 		<div class="page-header">
-			<h1>Administración <small>Profesor</small></h1>
+			<h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -48,7 +128,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="profesor-inicio.html">Inicio</a>
+					<a class="navbar-brand" href="profesor-inicio.php">Inicio</a>
 				</div>
 				<div class="collapse navbar-collapse" id="mynavbar-content">
 					<ul class="nav navbar-nav">
@@ -58,6 +138,9 @@
 						<li><a href="profesor-calificaciones.php">Calificaciones</a></li>
 						<li><a href="profesor-asistencias.php">Asistencias</a></li>
 					</ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="../desconectar.php"><span class="glyphicon glyphicon-log-out"></span> Desconectar</a></li>
+                                        </ul>
 				</div>
 			</div>
 		</div>
@@ -73,110 +156,123 @@
 				</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="nuevo">
-							<form class="form-horizontal">
+							<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 								<div class="form-group">
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="text" class="form-control" id="idField" placeholder="Id" />
+                                                                            <input type="text" class="form-control" id="idField" name="id" placeholder="Id"  pattern="[0-9]{1.6}" title="Solo números enteros" required/>
+									</div>
+								</div>
+                                                                <div class="form-group">
+									<label for="idField" class="col-xs-12 col-sm-2">Curso</label>
+									<div class="col-xs-12 col-sm-10">
+                                                                                <select id="lstCursosNuevo" class="col-xs-12 col-sm-4 form-control" name="cursoN">
+											<option value="-1">Curso</option>	
+										</select>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="email" class="form-control" id="nameField" placeholder="Nombre" />
+                                                                            <input type="text" class="form-control" id="nameField" name="nombre" placeholder="Nombre" required/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
-										<textarea class="form-control" id="descField" placeholder="Descripción"></textarea>
+                                                                            <textarea class="form-control" id="descField" name="descripcion" placeholder="Descripción" required></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="date" class="form-control" id="dateField" placeholder="Fecha" />
+                                                                            <input type="date" class="form-control" id="dateField" name="fecha" placeholder="DD/MM/YYYY"  pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formado de fecha DD/MM/YYYY"  required/>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-success">Enviar </button>
+								<div class="col-xs-offset-2">
+									<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
 								</div>
 							</form>
 						</div>
 						<div class="tab-pane" id="eliminar">
-							<form class="form-horizontal">
+							<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 								<div class="form-group">
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-10">
-										<select class="col-xs-12 col-sm-4 form-control">
-											<option id="" value="1">1</option>
-											<option id="" value="2">2</option>
-											<option id="" value="3">3</option>
-											<option id="" value="4">4</option>
+										<select id="lstTareasEliminar" class="col-xs-12 col-sm-4 form-control" name="idEliminar">
+											<option value="-1">Tarea</option>	
 										</select>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="email" class="form-control" id="nameField" placeholder="Nombre" />
+                                                                            <input type="text" class="form-control" id="nameFieldE" placeholder="Nombre" readonly/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
-										<textarea class="form-control" id="descField" placeholder="Descripción"></textarea>
+                                                                            <textarea class="form-control" id="descFieldE" placeholder="Descripción" readonly></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="date" class="form-control" id="dateField" placeholder="Fecha" />
+                                                                            <input type="date" class="form-control" id="dateFieldE" placeholder="DD/MM/YYYY" readonly/>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-success">Eliminar </button>
+								<div class="col-xs-offset-2">
+									<button type="submit" id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
 								</div>
 							</form>
 						</div>
 						<div class="tab-pane" id="modificar">
-							<form class="form-horizontal">
+							<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 								<div class="form-group">
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-12 col-sm-10">
-										<select class="col-xs-12 col-sm-4 form-control">
-											<option id="" value="1">1</option>
-											<option id="" value="2">2</option>
-											<option id="" value="3">3</option>
-											<option id="" value="4">4</option>
+                                                                                <select id="lstTareasModificar" class="col-xs-12 col-sm-4 form-control" name="idModificar">
+											<option value="-1">Tarea</option>	
+										</select>
+									</div>
+								</div>
+                                                                <div class="form-group">
+									<label for="idField" class="col-xs-12 col-sm-2">Curso</label>
+									<div class="col-xs-12 col-sm-10">
+                                                                                <select id="lstCursosModificar" class="col-xs-12 col-sm-4 form-control" name="cursoM">
+											<option value="-1">Curso</option>	
 										</select>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="email" class="form-control" id="nameField" placeholder="Nombre" />
+                                                                            <input type="text" class="form-control" id="nameFieldM" name="nombre" placeholder="Nombre" required/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
-										<textarea class="form-control" id="descField" placeholder="Descripción"></textarea>
+                                                                            <textarea class="form-control" id="descFieldM" name="descripcion" placeholder="Descripción" required></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
-										<input type="date" class="form-control" id="dateField" placeholder="Fecha" />
+                                                                            <input type="date" class="form-control" id="dateFieldM" name="fecha" placeholder="DD/MM/YYYY"  pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formado de fecha DD/MM/YYYY" required/>
 									</div>
 								</div>
-								<div class="col-xs-10 col-xs-offset-2">
-									<button type="submit" class="btn btn-success">Modificar </button>
+								<div class="col-xs-offset-2">
+									<button type="submit" id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
 								</div>
 							</form>
 						</div>
 					</div>
 			</div>
+                    <div class="panel-footer">
+                            <?php echo $result; ?>
+                    </div>
 		</div>
     </div>
 

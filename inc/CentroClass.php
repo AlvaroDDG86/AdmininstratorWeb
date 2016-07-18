@@ -48,7 +48,7 @@ class CentroClass {
 	if(!preg_match("/^[0-9a-zA-Z]{1,15}$/",$contrasena))
 		throw new Exception("Valor incorrecto en la contraseña");
         //Variable que recogerá los datos de la consulta
-        $srcDatos = $this->conBBDD->query("call getUsuario('".$usuario."', '".$contrasena."');");
+        $srcDatos = $this->conBBDD->query("call getUsuario(".$usuario.", '".$contrasena."');");
         return $srcDatos->fetch_object()==null?false:true;
     }
     
@@ -58,8 +58,8 @@ class CentroClass {
      * @return boolean
      */
     public function getNombre($id) {
-        $sql = "call getNombre(".$id.");";        
-        return $this->conBBDD->query($sql)->fetch_row();
+        $sql = "call getNombre(".$id.");";
+        return  $this->conBBDD->query($sql);
     }
     
 
@@ -343,8 +343,42 @@ class CentroClass {
         return $aCursos;
     }
     
+    /**
+     * Método para recoger todos los cursos de un profesor
+     * @param int $profesor
+     * @return aCursos
+     */
+    public function getCursosProfesor($profesor) {
+        //Variable que contendra los datos de las noticias
+        $aCursos=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getCursosProfesor(".$profesor.");");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aCursos[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aCursos;
+    }
     
-    
+    public function getAlumnosCurso($curso){
+        //Variable que contendra los datos de las noticias
+        $aAlumnos=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getAlumnosCurso(".$curso.");");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aAlumnos[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aAlumnos;
+    }
+
+
+
+
     //Administración para CENTRO
     
     /**

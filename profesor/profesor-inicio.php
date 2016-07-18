@@ -26,7 +26,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
-     <link href="../css/main-p.css" rel="stylesheet">
+     <link href="../css/main.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,7 +51,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="profesor-inicio.html">Inicio</a>
+					<a class="navbar-brand" href="profesor-inicio.php">Inicio</a>
 				</div>
 				<div class="collapse navbar-collapse" id="mynavbar-content">
 					<ul class="nav navbar-nav">
@@ -61,6 +61,9 @@
 						<li><a href="profesor-calificaciones.php">Calificaciones</a></li>
 						<li><a href="profesor-asistencias.php">Asistencias</a></li>
 					</ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="../desconectar.php"><span class="glyphicon glyphicon-log-out"></span> Desconectar</a></li>
+                                        </ul>
 				</div>
 			</div>
 		</div>

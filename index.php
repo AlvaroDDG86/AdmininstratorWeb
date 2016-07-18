@@ -33,13 +33,11 @@ if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene u
     {
         if($oCentro->isValidUser($_POST["usuario"], $_POST["password"])) //Ejecutamos el método que nos dice si el usuario existe y es profesor
         {
-            if($_POST["usuario"] == "secretario"){
+            $_SESSION["usuario"]=$_POST["usuario"]; //Ponemos una nueva variable, con el nombre del usuario conectado
+            if($_POST["usuario"] == "999999"){
                 header("location:secretario/secretario-inicio.php"); //Definimos donde a donde enviar
-                 $_SESSION["usuario"]=$_POST["usuario"]; //Ponemos una nueva variable, con el nombre del usuario conectado
             }else{
                 header("location:profesor/profesor-inicio.php"); //Definimos donde a donde enviar
-                $nombre = $oCentro->getNombre($_POST["usuario"]);
-                 $_SESSION["usuario"]=$nombre;//Ponemos una nueva variable, con el nombre del usuario conectado
             }
             session_name("conexion"); //Le damos un nombre a la sesión
             session_start(); //La inicializamos

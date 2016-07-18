@@ -155,103 +155,103 @@
 				</ul>
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<div class="tab-pane active" id="nuevo">
-						<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-							<div class="form-group">
-								<label for="idField" class="col-xs-12 col-sm-2">Id</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="idField" name="idNuevo" placeholder="Id" pattern="[0-9]{1.6}" title="Solo números enteros"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="nameField" name="nombreNuevo" placeholder="Nombre" required/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="apellidosField" name="apellidosNuevo" placeholder="Apellidos" required/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="dirField" class="col-xs-12 col-sm-2">Email</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="email" class="form-control" id="dirField" name="direccionNuevo" placeholder="Dirección" required/>
-								</div>
-							</div>
-							<div class="col-xs-offset-2">
-								<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
-							</div>
-						</form>
-					</div>
-					<div class="tab-pane" id="eliminar">
-						<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-							<div class="form-group">
-								<label for="idField" class="col-xs-12 col-sm-2">Id</label>
-									<div class="col-xs-12 col-sm-10">
-                                                                            <select class="col-xs-12 col-sm-4 form-control" id="lstProfesoresEliminar" name="idEliminar">
-                                                                                <option value="-1">Profesores</option>	
-                                                                            </select>
-									</div>
-							</div>
-							<div class="form-group">
-								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="nombreFieldE" name="nombreEliminar" placeholder="Nombre" readonly/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="apellidosFieldE" name="apellidosEliminar" placeholder="Apellidos" readonly/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="email" class="form-control" id="emailFieldE" name="direccionEliminar" placeholder="Dirección" readonly/>
-								</div>
-							</div>
-							<div class="col-xs-offset-2">
-								<button type="submit" id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
-							</div>
-						</form>
-					</div>
-					<div class="tab-pane" id="modificar">
-						<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-							<div class="form-group">
-								<label for="idField" class="col-xs-12 col-sm-2">Id</label>
-								<div class="col-xs-12 col-sm-10">
-									<select class="col-xs-12 col-sm-4 form-control" id="lstProfesoresModificar" name="idModificar">
-                                                                            <option value="-1">Profesores</option>	
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="nombreFieldM" name="nombreModificar" placeholder="Nombre" required/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="text" class="form-control" id="apellidosFieldM" name="apellidosModificar" placeholder="Apellidos" required/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
-								<div class="col-xs-12 col-sm-10">
-                                                                    <input type="email" class="form-control" id="emailFieldM" name="direccionModificar" placeholder="Dirección" required/>
-								</div>
-							</div>
-							<div class="col-xs-offset-2">
-								<button type="submit"  id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
-							</div>
-						</form>
-					</div>
+                                    <div class="tab-pane active" id="nuevo">
+                                        <form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+                                            <div class="form-group">
+                                                    <label for="idField" class="col-xs-12 col-sm-2">Id</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <input type="text" class="form-control" id="idField" name="idNuevo" placeholder="Id" pattern="[0-9]{1.6}" title="Solo números enteros"/>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <input type="text" class="form-control" id="nameField" name="nombreNuevo" placeholder="Nombre" required/>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <input type="text" class="form-control" id="apellidosField" name="apellidosNuevo" placeholder="Apellidos" required/>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="dirField" class="col-xs-12 col-sm-2">Email</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <input type="email" class="form-control" id="dirField" name="direccionNuevo" placeholder="Dirección" required/>
+                                                    </div>
+                                            </div>
+                                            <div class="col-xs-offset-2">
+                                                    <button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="eliminar">
+                                        <form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+                                            <div class="form-group">
+                                                <label for="idField" class="col-xs-12 col-sm-2">Id</label>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <select class="col-xs-12 col-sm-4 form-control" id="lstProfesoresEliminar" name="idEliminar">
+                                                        <option value="-1">Profesores</option>	
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <input type="text" class="form-control" id="nombreFieldE" name="nombreEliminar" placeholder="Nombre" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <input type="text" class="form-control" id="apellidosFieldE" name="apellidosEliminar" placeholder="Apellidos" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <input type="email" class="form-control" id="emailFieldE" name="direccionEliminar" placeholder="Dirección" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-offset-2">
+                                                    <button type="submit" id="btnE" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Eliminar </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="modificar">
+                                        <form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+                                            <div class="form-group">
+                                                <label for="idField" class="col-xs-12 col-sm-2">Id</label>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <select class="col-xs-12 col-sm-4 form-control" id="lstProfesoresModificar" name="idModificar">
+                                                        <option value="-1">Profesores</option>	
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <input type="text" class="form-control" id="nombreFieldM" name="nombreModificar" placeholder="Nombre" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <input type="text" class="form-control" id="apellidosFieldM" name="apellidosModificar" placeholder="Apellidos" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <input type="email" class="form-control" id="emailFieldM" name="direccionModificar" placeholder="Dirección" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-offset-2">
+                                                    <button type="submit"  id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
+                                            </div>
+                                        </form>
+                                    </div>
 				</div>
 			</div>
                      <div class="panel-footer">

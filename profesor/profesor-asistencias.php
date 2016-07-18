@@ -1,3 +1,31 @@
+<?php
+    include '../inc/validacion.php'; //INclusión del archivo, para restringir el acceso
+    $result="";
+    try
+    {
+        include_once '../inc/CentroConstants.php';
+        include_once '../inc/CentroClass.php';
+    }
+    catch(Exception $e)
+    {
+        echo "no existen los ficheros de configuración";
+    }
+    try
+    {
+        $oCentro=new CentroClass(DBHOST,DBUSER,DBPASS,DBNAME);//Creamos un objeto de nuestra clase, con los valores por defecto del constructor
+    }
+    catch(Exception $e)
+    {
+        echo "no se ha podido conectar con la base de datos";
+    }
+    if(isset($_POST["curso"]) && isset($_POST["alumno"]) && isset($_POST["faltas"])){
+        if($oCentro->setFaltas($_POST["curso"],$_POST["alumno"],$_POST["calificacion"])){
+            $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Faltas de asistencia enviadas</div>';
+        }else{
+            $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al enviar las faltas de asistencia</div>';
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +51,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
-    <link href="../css/main-p.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,10 +63,17 @@
 </head>
 
 <body class="index">
-
+         <!-- Modal -->
+        <div class="modal" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <img src="../img/loading.gif" width="400" height="400" alt="loading" class="modal-body"/>
+                </div>
+            </div>
+        </div>
 	<div class="container">
 		<div class="page-header">
-			<h1>Administración <small>Profesor</small></h1>
+			<h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -48,7 +83,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="profesor-inicio.html">Inicio</a>
+					<a class="navbar-brand" href="profesor-inicio.php">Inicio</a>
 				</div>
 				<div class="collapse navbar-collapse" id="mynavbar-content">
 					<ul class="nav navbar-nav">
@@ -58,6 +93,9 @@
 						<li><a href="profesor-calificaciones.php">Calificaciones</a></li>
 						<li class="active"><a href="profesor-asistencias.php">Asistencias</a></li>
 					</ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="../desconectar.php"><span class="glyphicon glyphicon-log-out"></span> Desconectar</a></li>
+                                        </ul>
 				</div>
 			</div>
 		</div>
@@ -66,46 +104,40 @@
 				<h3>Asistencias</h3>
 			</div>
 			<div class="panel-body">
-				<!-- Tab panes -->
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label for="idField" class="col-xs-12 col-sm-2">Curso</label>
-							<div class="col-xs-12 col-sm-10">
-								<select class="col-xs-12 col-sm-4 form-control">
-									<option id="" value="1">Curso</option>
-									<option id="" value="2">2</option>
-									<option id="" value="3">3</option>
-									<option id="" value="4">4</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="idField" class="col-xs-12 col-sm-2">Alumno</label>
-							<div class="col-xs-12 col-sm-10">
-								<select class="col-xs-12 col-sm-4 form-control">
-									<option id="" value="1">Alumno</option>
-									<option id="" value="2">2</option>
-									<option id="" value="3">3</option>
-									<option id="" value="4">4</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="idField" class="col-xs-12 col-sm-2">Asistencias</label>
-							<div class="col-xs-12 col-sm-10">
-								<select class="col-xs-12 col-sm-4 form-control">
-									<option id="" value="1">Asistencias</option>
-									<option id="" value="2">2</option>
-									<option id="" value="3">3</option>
-									<option id="" value="4">4</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-xs-10 col-xs-offset-2">
-							<button type="submit" class="btn btn-success">Subir </button>
-						</div>
-					</form>							
+                            <!-- Tab panes -->
+			    <form class="form-horizontal"  method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+                                        <div class="form-group">
+                                            <label for="lstCursos" class="col-xs-12 col-sm-2">Curso</label>
+                                            <div class="col-xs-12 col-sm-10">
+                                                    <select id="lstCursos" class="col-xs-12 col-sm-4 form-control" name="curso">
+                                                            <option value="-1">Curso</option>	
+                                                    </select>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label for="lstAlumnos" class="col-xs-12 col-sm-2">Alumno</label>
+                                            <div class="col-xs-12 col-sm-10">
+                                                    <select id="lstAlumnos" class="col-xs-12 col-sm-4 form-control" name="alumno">
+                                                            <option value="-1">Alumno</option>	
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lstFaltas" class="col-xs-12 col-sm-2">Faltas</label>
+                                            <div class="col-xs-12 col-sm-10">
+                                                    <select id="lstFaltas" class="col-xs-12 col-sm-4 form-control" name="faltas">
+                                                            <option value="-1">Faltas de asistencia</option>	
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-offset-2">
+                                            <button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Enviar </button>
+                                        </div>
+                                </form>							
 			</div>
+                    <div class="panel-footer">
+                            <?php echo $result; ?>
+                    </div>
 		</div>
     </div>
 
