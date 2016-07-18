@@ -74,7 +74,7 @@
 	<div class="container">
                 
 		<div class="page-header">
-			<h1>Administración <small><?php echo $_SESSION["usuario"]?></small></h1>
+			<h1>Administración <small id="idProfesorSmall"><?php echo $_SESSION["usuario"]?></small></h1>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -148,7 +148,7 @@
     <script src="../js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="../js/agency.min.js"></script>
+    <script src="../js/po-main-documento.js" type="text/javascript"></script>
 
 </body>
 

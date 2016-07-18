@@ -32,6 +32,7 @@ $(document).ready(function(){
     $('#lstCursos').change(function() {
         if($('#lstCursos').val()=="-1"){
             $("#lstAlumnos").empty().append('<option selected="selected" value="-1">Alumno</option>');
+            $("#lstFaltas").empty().append('<option selected="selected" value="-1">Faltas</option>');
         }else{
             //Petición post para rellenar la lista de las noticias
             $.post("../inc/CentroService.php",
@@ -49,24 +50,24 @@ $(document).ready(function(){
         }
     });
     
-     $( "#lstCursos" ).change(function(){
-        if($("#lstCursos option:selected" ).val()=="-1" || ("#lstAlumnos$ option:selected" ).val()=="-1"){
-            $("#btnE").prop('disabled', true);
-        }else{
-            $("#btnE").prop('disabled', false);
-        }
+     //Actualizamos los campos cuando haya un cambio en la select
+    $('#lstAlumnos').change(function() {
+        //Petición post para rellenar la lista de las noticias
+        $.post("../inc/CentroService.php",
+        {tipo:"faltas",curso:$("#lstCursos").val()},
+        function(datos){
+            for(var i=1;i<=parseInt(datos.horasCurso);i++){
+                $('#lstFaltas').append($('<option>', {
+                    value: i,
+                    text: i
+                }));
+            }            
+        },"json"); 
     });
-        
-      $( "#lstAlumnos" ).change(function(){
-        if($("#lstAlumnos option:selected" ).val()=="-1"){
-            $("#btnE").prop('disabled', true);
-        }else{
-            $("#btnE").prop('disabled', false);
-        }
-   });
     
     //Forzamos el change para que cargen los datos
     $( "#lstCursos" ).change();
 
 });
 
+//{tipo:3,tipoProducto:$("#lstTiposProducto").val()};

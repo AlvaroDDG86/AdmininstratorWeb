@@ -18,10 +18,12 @@ if(file_exists('CentroClass.php'))
 
 switch($_POST["tipo"]){
     case "examen":
-        
+        $aDatos=$oCentro->getExamenes($_POST["profesor"]);
+        echo json_encode($aDatos); 
         break;
     case "tarea":
-        
+        $aDatos=$oCentro->getTareas($_POST["profesor"]);
+        echo json_encode($aDatos); 
         break;
     case "curso":
         $aDatos=$oCentro->getCursos();
@@ -33,6 +35,10 @@ switch($_POST["tipo"]){
         break;
     case "alumnos":
         $aDatos=$oCentro->getAlumnosCurso($_POST["curso"]);
+        echo json_encode($aDatos); 
+        break;
+    case "faltas":
+        $aDatos=$oCentro->getFaltas($_POST["curso"]);
         echo json_encode($aDatos); 
         break;
     case "alumno":

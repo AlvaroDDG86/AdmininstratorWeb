@@ -376,8 +376,50 @@ class CentroClass {
         return $aAlumnos;
     }
 
+    public function getFaltas($curso) {
+        $sql = "call getFaltas(".$curso.")";
+        $rscDatos =$this->conBBDD->query($sql)->fetch_object();
+        return $rscDatos;
+    }
 
-
+    // administracion de las tareas
+    
+    /**
+     * Método para recoger las tareas de un profesor
+     * @param int $profesor
+     * @return aTareas
+     */
+    public function getTareas($profesor) {
+        //Variable que contendra los datos de las noticias
+        $aTareas=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getTareas(".$profesor.");");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aTareas[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aTareas;
+    }
+    
+    
+    
+    //Administracion de EXÁMENES
+    
+    public function getExamenes($profesor) {
+         //Variable que contendra los datos de las noticias
+        $aExamenes=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getExamenes(".$profesor.");");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aExamenes[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aExamenes;
+    }
 
     //Administración para CENTRO
     
@@ -404,7 +446,19 @@ class CentroClass {
     }
     
     
+    // Calificación
     
+    /**
+     * Método para poner calificación a un alumno
+     * @param INT $curso
+     * @param INT $alumno
+     * @param decimal $calificacion
+     * @return boolean
+     */
+    public function setCalificacion($curso,$alumno,$calificacion) {
+        $sql = "call setCalificacion(".$curso.",".$alumno.",".$calificacion.");";
+        return $this->conBBDD->query($sql);
+    }
     
     
     /**

@@ -118,7 +118,7 @@
         </div>
 	<div class="container">
 		<div class="page-header">
-			<h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>
+			<h1>Administración <small id="idProfesorSmall"><?php echo $_SESSION["usuario"]; ?></small></h1>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -197,7 +197,7 @@
 						<div class="tab-pane" id="eliminar">
 							<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 								<div class="form-group">
-									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
+									<label for="lstTareasEliminar" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-10">
 										<select id="lstTareasEliminar" class="col-xs-12 col-sm-4 form-control" name="idEliminar">
 											<option value="-1">Tarea</option>	
@@ -205,19 +205,19 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
+									<label for="nameFieldE" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
                                                                             <input type="text" class="form-control" id="nameFieldE" placeholder="Nombre" readonly/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
+									<label for="descFieldE" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
                                                                             <textarea class="form-control" id="descFieldE" placeholder="Descripción" readonly></textarea>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
+									<label for="dateFieldE" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
                                                                             <input type="date" class="form-control" id="dateFieldE" placeholder="DD/MM/YYYY" readonly/>
 									</div>
@@ -230,7 +230,7 @@
 						<div class="tab-pane" id="modificar">
 							<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 								<div class="form-group">
-									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
+									<label for="lstTareasModificar" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-12 col-sm-10">
                                                                                 <select id="lstTareasModificar" class="col-xs-12 col-sm-4 form-control" name="idModificar">
 											<option value="-1">Tarea</option>	
@@ -246,19 +246,19 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
+									<label for="nameFieldM" class="col-xs-12 col-sm-2">Nombre</label>
 									<div class="col-xs-12 col-sm-10">
                                                                             <input type="text" class="form-control" id="nameFieldM" name="nombre" placeholder="Nombre" required/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="descField" class="col-xs-12 col-sm-2">Descripcion</label>
+									<label for="descFieldM" class="col-xs-12 col-sm-2">Descripcion</label>
 									<div class="col-xs-12 col-sm-10">
                                                                             <textarea class="form-control" id="descFieldM" name="descripcion" placeholder="Descripción" required></textarea>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="dateField" class="col-xs-12 col-sm-2">Fecha</label>
+									<label for="dateFieldM" class="col-xs-12 col-sm-2">Fecha</label>
 									<div class="col-xs-12 col-sm-10">
                                                                             <input type="date" class="form-control" id="dateFieldM" name="fecha" placeholder="DD/MM/YYYY"  pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Formado de fecha DD/MM/YYYY" required/>
 									</div>
@@ -290,7 +290,7 @@
     <script src="../js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="../js/agency.min.js"></script>
+    <script src="../js/po-main-tarea.js" type="text/javascript"></script>
 
 </body>
 
