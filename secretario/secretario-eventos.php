@@ -151,12 +151,31 @@
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#nuevo" data-toggle="tab">Nuevo</a></li>
+					<li class="active"><a href="#mostrar" data-toggle="tab">Mostrar</a></li>
+					<li><a href="#nuevo" data-toggle="tab">Nuevo</a></li>
 					<li><a href="#eliminar" data-toggle="tab">Eliminar</a></li>
 					<li><a href="#modificar" data-toggle="tab">Modificar</a></li>
 				</ul>
 					<div class="tab-content">
-						<div class="tab-pane active" id="nuevo">
+                                                <div class="tab-pane active" id="mostrar">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover table-striped" id="tblShow">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Descripción</th>
+                                                                    <th>Fecha</th>
+                                                                    <th>Imagen</th>
+                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                      </div>
+						</div>
+						<div class="tab-pane" id="nuevo">
 							<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 								<div class="form-group">
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>

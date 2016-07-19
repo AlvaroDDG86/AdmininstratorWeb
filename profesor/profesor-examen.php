@@ -27,7 +27,7 @@
             $descripcion=$_POST["descripcion"];
             $fecha=$_POST["fecha"];
             if($oCentro->newExamen($id, $curso, $nombre, $descripcion, $fecha)){
-                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nuevo examen agregada correctamente</div>';
+                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nuevo examen agregado correctamente</div>';
             }else{
                 $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al crear examen</div>';
             }
@@ -132,6 +132,7 @@
 				</div>
 				<div class="collapse navbar-collapse" id="mynavbar-content">
 					<ul class="nav navbar-nav">
+                                                <li><a href="profesor-alumnos.php">Alumnos</a></li>
 						<li><a href="profesor-tarea.php">Tarea</a></li>
 						<li class="active"><a href="profesor-examen.php">Examen</a></li>
 						<li><a href="profesor-documento.php">Documento</a></li>
@@ -150,17 +151,35 @@
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#nuevo" data-toggle="tab">Nuevo</a></li>
+					<li class="active"><a href="#mostrar" data-toggle="tab">Mostrar</a></li>
+					<li><a href="#nuevo" data-toggle="tab">Nuevo</a></li>
 					<li><a href="#eliminar" data-toggle="tab">Eliminar</a></li>
 					<li><a href="#modificar" data-toggle="tab">Modificar</a></li>
 				</ul>
-				<div class="tab-content">
-						<div class="tab-pane active" id="nuevo">
+					<div class="tab-content">
+                                                <div class="tab-pane active" id="mostrar">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover table-striped" id="tblShow">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Descripción</th>
+                                                                    <th>Fecha</th>
+                                                                    <th>Curso</th>
+                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                      </div>
+						</div>
+						<div class="tab-pane" id="nuevo">
 							<form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 								<div class="form-group">
 									<label for="idField" class="col-xs-12 col-sm-2">Id</label>
 									<div class="col-xs-12 col-sm-10">
-                                                                            <input type="text" class="form-control" id="idField" name="id" placeholder="Id"  pattern="[0-9]{1.6}" title="Solo números enteros" required/>
+                                                                            <input type="text" class="form-control" id="idField" name="id" placeholder="Id"  pattern="[0-9]{1,6}" title="Solo números enteros" required/>
 									</div>
 								</div>
                                                                 <div class="form-group">

@@ -45,6 +45,8 @@ $(document).ready(function(){
                     value: datos[strIndice].idTarea,
                     text: datos[strIndice].idTarea
                 }));
+                var newRowContent = "<tr><td>"+datos[strIndice].idTarea+"</td><td>"+datos[strIndice].nombreTarea+"</td><td>"+datos[strIndice].descripcionTarea+"</td><td>"+datos[strIndice].fechaTarea+"</td><td>"+datos[strIndice].codigoCurso+"</td></tr>";
+                $("#tblShow tbody").append(newRowContent);
             }
         },"json"); 
    
@@ -64,9 +66,7 @@ $(document).ready(function(){
         },"json"); 
     
     //Forzamos el change para que cargen los datos
-    $( "#lstCursosNuevo" ).change();
-    $('#lstTareasModificar').change();
-    $('#lstTareasEliminar').change();
+    $("#lstCursosNuevo" ).change();
     
     $('#lstTareasModificar').change(function(){
         if($("#lstTareasModificar option:selected" ).val()=="-1"){
@@ -100,6 +100,9 @@ $(document).ready(function(){
         }
     });
     
+    
+    $('#lstTareasModificar').change();
+    $('#lstTareasEliminar').change();
     
     
 

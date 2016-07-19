@@ -362,6 +362,12 @@ class CentroClass {
         return $aCursos;
     }
     
+    
+    /**
+     * Método para recorrer todos los alumnos de un curso
+     * @param int $curso
+     * @return aAlumnos
+     */
     public function getAlumnosCurso($curso){
         //Variable que contendra los datos de las noticias
         $aAlumnos=[];
@@ -375,14 +381,102 @@ class CentroClass {
         //Se devuelve el array con todos los datos
         return $aAlumnos;
     }
+    
+    /**
+     * Método para recorrer todos los alumnos de un profesor
+     * @param int $profesor
+     * @return aAlumnos
+     */
+    public function getAlumnosProfesor($profesor) {
+        //Variable que contendra los datos de las noticias
+        $aAlumnos=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getAlumnosProfesor(".$profesor.");");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aAlumnos[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aAlumnos;
+    }
 
+    /**
+     * Método para saber el número máximo de faltas de un curso
+     * @param int $curso
+     * @return int
+     */
     public function getFaltas($curso) {
         $sql = "call getFaltas(".$curso.")";
         $rscDatos =$this->conBBDD->query($sql)->fetch_object();
         return $rscDatos;
     }
 
-    // administracion de las tareas
+    //Administracion de ALUMNOS
+    
+    
+    public function newAlumno($id, $nombre, $apellidos, $direccion, $email, $curso) {
+        $sql = "call newAlumno(".$id.",'".$nombre."','".$apellidos."','".$direccion."','".$email."',".$curso.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    
+    /**
+     * Método para eliminar un alumno
+     * @param int $id
+     * @return boolean
+     */
+    public function deleteAlumno($id) {
+        $sql = "call deleteAlumno(".$id.");";
+        return $this->conBBDD->query($sql); 
+    }
+    
+    
+    public function editAlumno($id, $nombre, $apellidos, $direccion, $email, $curso) {
+        $sql = "call editAlumno(".$id.",'".$nombre."','".$apellidos."','".$direccion."','".$email."',".$curso.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    
+    // administracion de las TAREAS
+    
+    /**
+     * Método para crear una nueva tarea
+     * @param int $id
+     * @param int $curso
+     * @param String $nombre
+     * @param String $descripcion
+     * @param String $fecha
+     * @return boolean
+     */
+    public function newTarea($id, $curso, $nombre, $descripcion, $fecha) {
+        $sql = "call newTarea(".$id.",'".$nombre."','".$descripcion."','".$fecha."',".$curso.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para eliminar una tarea
+     * @param int $id
+     * @return boolean
+     */
+    public function deleteTarea($id) {
+        $sql = "call deleteTarea(".$id.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para editar una tarea
+     * @param int $id
+     * @param int $curso
+     * @param String $nombre
+     * @param String $descripcion
+     * @param String $fecha
+     * @return boolean
+     */
+    public function editTarea($id, $curso, $nombre, $descripcion, $fecha) {
+        $sql = "call editTarea(".$id.",'".$nombre."','".$descripcion."','".$fecha."',".$curso.");";
+        return $this->conBBDD->query($sql);
+    }
     
     /**
      * Método para recoger las tareas de un profesor
@@ -407,6 +501,49 @@ class CentroClass {
     
     //Administracion de EXÁMENES
     
+    /**
+     * Método para crear una nuevo Examen
+     * @param int $id
+     * @param int $curso
+     * @param String $nombre
+     * @param String $descripcion
+     * @param String $fecha
+     * @return boolean
+     */
+    public function newExamen($id,  $curso, $nombre, $descripcion, $fecha) {
+        $sql = "call newExamen(".$id.",'".$nombre."','".$descripcion."','".$fecha."',".$curso.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para eliminar un Examen
+     * @param int $id
+     * @return boolean
+     */
+    public function deleteExamen($id) {
+        $sql = "call deleteExamen(".$id.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para editar un Examen
+     * @param int $id
+     * @param int $curso
+     * @param String $nombre
+     * @param String $descripcion
+     * @param String $fecha
+     * @return boolean
+     */
+    public function editExamen($id, $curso, $nombre, $descripcion, $fecha) {
+        $sql = "call editExamen(".$id.",'".$nombre."','".$descripcion."','".$fecha."',".$curso.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para recoger las tareas de un profesor
+     * @param type $profesor
+     * @return type
+     */
     public function getExamenes($profesor) {
          //Variable que contendra los datos de las noticias
         $aExamenes=[];
@@ -457,6 +594,18 @@ class CentroClass {
      */
     public function setCalificacion($curso,$alumno,$calificacion) {
         $sql = "call setCalificacion(".$curso.",".$alumno.",".$calificacion.");";
+        return $this->conBBDD->query($sql);
+    }
+    
+    /**
+     * Método para poner las faltas de un alumno en un curso
+     * @param int $curso
+     * @param int $alumno
+     * @param int $faltas
+     * @return boolean
+     */
+    public function setFaltas($curso,$alumno,$faltas) {
+        $sql = "call setFaltas(".$curso.",".$alumno.",".$faltas.");";
         return $this->conBBDD->query($sql);
     }
     

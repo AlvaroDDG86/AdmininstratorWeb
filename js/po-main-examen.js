@@ -45,6 +45,8 @@ $(document).ready(function(){
                     value: datos[strIndice].idExamen,
                     text: datos[strIndice].idExamen
                 }));
+                var newRowContent = "<tr><td>"+datos[strIndice].idExamen+"</td><td>"+datos[strIndice].nombreExamen+"</td><td>"+datos[strIndice].descripcionExamen+"</td><td>"+datos[strIndice].fechaExamen+"</td><td>"+datos[strIndice].codigoCurso+"</td></tr>";
+                $("#tblShow tbody").append(newRowContent);
             }
         },"json"); 
    
@@ -65,8 +67,6 @@ $(document).ready(function(){
     
     //Forzamos el change para que cargen los datos
     $( "#lstCursosNuevo" ).change();
-    $('#lstExamenesModificar').change();
-    $('#lstExamenesEliminar').change();
     
     $('#lstExamenesModificar').change(function(){
         if($("#lstExamenesModificar option:selected" ).val()=="-1"){
@@ -101,6 +101,8 @@ $(document).ready(function(){
     });
     
     
+    $('#lstExamenesModificar').change();
+    $('#lstExamenesEliminar').change();
     
 
 });

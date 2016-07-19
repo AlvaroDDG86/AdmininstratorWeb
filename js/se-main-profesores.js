@@ -31,6 +31,8 @@ $(document).ready(function(){
                         value: datos[strIndice].idProfesor,
                         text: datos[strIndice].idProfesor
                 }));
+                var newRowContent = "<tr><td>"+datos[strIndice].idProfesor+"</td><td>"+datos[strIndice].nombreProfesor+"</td><td>"+datos[strIndice].apellidosProfesor+"</td><td>"+datos[strIndice].direccionProfesor+"</td></tr>";
+                $("#tblShow tbody").append(newRowContent);
             }
         },"json"); 
     

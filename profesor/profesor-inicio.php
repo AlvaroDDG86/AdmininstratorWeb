@@ -55,6 +55,7 @@
 				</div>
 				<div class="collapse navbar-collapse" id="mynavbar-content">
 					<ul class="nav navbar-nav">
+                                                <li><a href="profesor-alumnos.php">Alumnos</a></li>
 						<li><a href="profesor-tarea.php">Tarea</a></li>
 						<li><a href="profesor-examen.php">Examen</a></li>
 						<li><a href="profesor-documento.php">Documento</a></li>

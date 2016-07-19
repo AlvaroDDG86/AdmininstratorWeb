@@ -31,6 +31,8 @@ $(document).ready(function(){
                         value: datos[strIndice].idTelefono,
                         text: datos[strIndice].idTelefono
                 }));
+                var newRowContent = "<tr><td>"+datos[strIndice].idTelefono+"</td><td>"+datos[strIndice].telefono+"</td></tr>";
+                $("#tblShow tbody").append(newRowContent);
             }
         },"json"); 
     

@@ -18,18 +18,22 @@
     {
         echo "no se ha podido conectar con la base de datos";
     }
-    if(isset($_POST["idNuevo"]) && isset($_POST["nombreNuevo"]) && isset($_POST["apellidosNuevo"]) && isset($_POST["direccionNuevo"])){
+    if(isset($_POST["idNuevo"]) && isset($_POST["nombreNuevo"]) && isset($_POST["apellidosNuevo"]) && isset($_POST["direccionNuevo"]) && isset($_POST["emailNuevo"]) && $_POST['checkbox']){
         try
         {
             $id=$_POST["idNuevo"];
             $nombre=$_POST["nombreNuevo"];
             $apellidos=$_POST["apellidosNuevo"];
-            $email=$_POST["direccionNuevo"];
-            if($oCentro->newProfesor($id, $nombre, $apellidos, $email)){
-                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nuevo profesor agregado correctamente</div>';
-            }else{
-                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al crear profesor</div>';
+            $direccion=$_POST["direccionNuevo"];
+            $email=$_POST["emailNuevo"];
+            foreach($_POST['checkbox'] as $checkbox){
+                if($oCentro->newAlumno($id, $nombre, $apellidos, $direccion, $email, $checkbox)){
+                    $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nuevo alumno agregado correctamente</div>';
+                }else{
+                    $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al crear alumno</div>';
+                }
             }
+           
         }
         catch (Exception $x)
         {
@@ -39,10 +43,10 @@
     if(isset($_POST["idEliminar"])){
         try
         {
-            if($oCentro->deleteProfesor($_POST["idEliminar"])){
-                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Profesor eliminado</div>';
+            if($oCentro->deleteAlumno($_POST["idEliminar"])){
+                $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Alumno eliminado</div>';
             }else{
-                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al eliminar profesor - Comprueba si está asociado a un curso</div>';
+                $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al eliminar alumno</div>';
             }
          }
         catch (Exception $x)
@@ -50,14 +54,15 @@
             exit;
         }
     }
-    if(isset($_POST["idModificar"]) && isset($_POST["nombreModificar"]) && isset($_POST["apellidosModificar"]) && isset($_POST["direccionModificar"])){
+    if(isset($_POST["idModificar"]) && isset($_POST["nombreModificar"]) && isset($_POST["apellidosModificar"]) && isset($_POST["direccionModificar"]) && isset($_POST["emailModificar"]) && $_POST['checkbox']){
         try
         {
             $id=$_POST["idModificar"];
             $nombre=$_POST["nombreModificar"];
             $apellidos=$_POST["apellidosModificar"];
-            $email=$_POST["direccionModificar"];
-            if($oCentro->editProfesor($id, $nombre, $apellidos, $email)){
+            $direccion=$_POST["direccionModificar"];
+            $email=$_POST["emailModificar"];
+            if($oCentro->editAlumno($id, $nombre, $apellidos, $direccion, $email)){
                 $result='<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Profesor actualizado</div>';
             }else{
                 $result='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Error al actualizar profesor</div>';
@@ -116,7 +121,7 @@
         </div>
 	<div class="container">
 		<div class="page-header">
-			<h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>
+                    <h1>Administración <small id="idProfesorSmall"><?php echo $_SESSION["usuario"]; ?></small></h1>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -126,16 +131,16 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="secretario-inicio.php">Inicio</a>
+					<a class="navbar-brand" href="profesor-inicio.php">Inicio</a>
 				</div>
 				<div class="collapse navbar-collapse" id="mynavbar-content">
 					<ul class="nav navbar-nav">
-						<li><a href="secretario-noticias.php">Noticias</a></li>
-						<li><a href="secretario-eventos.php">Eventos</a></li>
-						<li class="active"><a href="secretario-profesores.php">Profesores</a></li>
-                                                <li><a href="secretario-cursos.php">Cursos</a></li>
-						<li><a href="secretario-telefonos.php">Teléfonos</a></li>
-						<li><a href="secretario-centro.php">Centro</a></li>
+						<li class="active"><a href="profesor-alumnos.php">Alumnos</a></li>
+						<li><a href="profesor-tarea.php">Tarea</a></li>
+						<li><a href="profesor-examen.php">Examen</a></li>
+						<li><a href="profesor-documento.php">Documento</a></li>
+						<li><a href="profesor-calificaciones.php">Calificaciones</a></li>
+						<li><a href="profesor-asistencias.php">Asistencias</a></li>
 					</ul>
                                         <ul class="nav navbar-nav navbar-right">
                                             <li><a href="../desconectar.php"><span class="glyphicon glyphicon-log-out"></span> Desconectar</a></li>
@@ -145,7 +150,7 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>Profesores</h3>
+				<h3>Alumnos</h3>
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-tabs">
@@ -163,6 +168,7 @@
                                                                     <th>ID</th>
                                                                     <th>Nombre</th>
                                                                     <th>Apellidos</th>
+                                                                    <th>Dirección</th>
                                                                     <th>Email</th>
                                                                  </tr>
                                                             </thead>
@@ -193,9 +199,21 @@
                                                     </div>
                                             </div>
                                             <div class="form-group">
-                                                    <label for="dirField" class="col-xs-12 col-sm-2">Email</label>
+                                                    <label for="dirField" class="col-xs-12 col-sm-2">Dirección</label>
                                                     <div class="col-xs-12 col-sm-10">
-                                                        <input type="email" class="form-control" id="dirField" name="direccionNuevo" placeholder="Dirección" required/>
+                                                        <input type="text" class="form-control" id="dirField" name="direccionNuevo" placeholder="Dirección" required/>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="emailField" class="col-xs-12 col-sm-2">Email</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <input type="email" class="form-control" id="emailField" name="emailNuevo" placeholder="Email" required/>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="emailField" class="col-xs-12 col-sm-2">Cursos</label>
+                                                    <div class="col-xs-12 col-sm-10 checkbox" id="chkNuevo">
+                                                        
                                                     </div>
                                             </div>
                                             <div class="col-xs-offset-2">
@@ -206,29 +224,35 @@
                                     <div class="tab-pane" id="eliminar">
                                         <form class="form-horizontal" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
                                             <div class="form-group">
-                                                <label for="idField" class="col-xs-12 col-sm-2">Id</label>
+                                                <label for="lstAlumnosEliminar" class="col-xs-12 col-sm-2">Id</label>
                                                 <div class="col-xs-12 col-sm-10">
-                                                    <select class="col-xs-12 col-sm-4 form-control" id="lstProfesoresEliminar" name="idEliminar">
-                                                        <option value="-1">Profesores</option>	
+                                                    <select class="col-xs-12 col-sm-4 form-control" id="lstAlumnosEliminar" name="idEliminar">
+                                                        <option value="-1">Alumnos</option>	
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
+                                                <label for="nombreFieldE" class="col-xs-12 col-sm-2">Nombre</label>
                                                 <div class="col-xs-12 col-sm-10">
                                                     <input type="text" class="form-control" id="nombreFieldE" name="nombreEliminar" placeholder="Nombre" readonly/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
+                                                <label for="apellidosFieldE" class="col-xs-12 col-sm-2">Apellidos</label>
                                                 <div class="col-xs-12 col-sm-10">
                                                     <input type="text" class="form-control" id="apellidosFieldE" name="apellidosEliminar" placeholder="Apellidos" readonly/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
+                                                    <label for="dirFieldE" class="col-xs-12 col-sm-2">Dirección</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <input type="text" class="form-control" id="dirFieldE" name="direccionEliminar" placeholder="Dirección" readonly/>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="emailFieldE" class="col-xs-12 col-sm-2">Email</label>
                                                 <div class="col-xs-12 col-sm-10">
-                                                    <input type="email" class="form-control" id="emailFieldE" name="direccionEliminar" placeholder="Dirección" readonly/>
+                                                    <input type="email" class="form-control" id="emailFieldE" name="emailEliminar" placeholder="Email" readonly/>
                                                 </div>
                                             </div>
                                             <div class="col-xs-offset-2">
@@ -241,28 +265,40 @@
                                             <div class="form-group">
                                                 <label for="idField" class="col-xs-12 col-sm-2">Id</label>
                                                 <div class="col-xs-12 col-sm-10">
-                                                    <select class="col-xs-12 col-sm-4 form-control" id="lstProfesoresModificar" name="idModificar">
-                                                        <option value="-1">Profesores</option>	
+                                                    <select class="col-xs-12 col-sm-4 form-control" id="lstAlumnosModificar" name="idModificar">
+                                                        <option value="-1">Alumnos</option>	
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="nameField" class="col-xs-12 col-sm-2">Nombre</label>
+                                                <label for="nombreFieldM" class="col-xs-12 col-sm-2">Nombre</label>
                                                 <div class="col-xs-12 col-sm-10">
                                                     <input type="text" class="form-control" id="nombreFieldM" name="nombreModificar" placeholder="Nombre" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="apellidosField" class="col-xs-12 col-sm-2">Apellidos</label>
+                                                <label for="apellidosFieldM" class="col-xs-12 col-sm-2">Apellidos</label>
                                                 <div class="col-xs-12 col-sm-10">
                                                     <input type="text" class="form-control" id="apellidosFieldM" name="apellidosModificar" placeholder="Apellidos" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="dirField" class="col-xs-12 col-sm-2">Direccion</label>
+                                                    <label for="dirFieldM" class="col-xs-12 col-sm-2">Dirección</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <input type="text" class="form-control" id="dirFieldM" name="direccionModificar" placeholder="Dirección" required/>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="emailFieldM" class="col-xs-12 col-sm-2">Email</label>
                                                 <div class="col-xs-12 col-sm-10">
-                                                    <input type="email" class="form-control" id="emailFieldM" name="direccionModificar" placeholder="Dirección" required/>
+                                                    <input type="email" class="form-control" id="emailFieldM" name="emailModificar" placeholder="Email" required/>
                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="emailField" class="col-xs-12 col-sm-2">Cursos</label>
+                                                    <div class="col-xs-12 col-sm-10 checkbox" id="chkModificar">
+                                                        
+                                                    </div>
                                             </div>
                                             <div class="col-xs-offset-2">
                                                     <button type="submit"  id="btnM" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Cargando...">Modificar </button>
@@ -294,7 +330,7 @@
     <script src="../js/agency.min.js"></script>
     
      <!-- Theme JavaScript -->
-    <script src="../js/se-main-profesores.js"></script>
+     <script src="../js/po-main-alumnos.js" type="text/javascript"></script>
 
 </body>
 

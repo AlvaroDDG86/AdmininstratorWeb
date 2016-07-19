@@ -31,6 +31,8 @@ $(document).ready(function(){
                         value: datos[strIndice].idCurso,
                         text: datos[strIndice].idCurso
                 }));
+                var newRowContent = "<tr><td>"+datos[strIndice].idCurso+"</td><td>"+datos[strIndice].nombreCurso+"</td><td>"+datos[strIndice].descripcionCurso+"</td><td>"+datos[strIndice].horasCurso+"</td><td>"+datos[strIndice].codigoProfesor+"</td></tr>";
+                $("#tblShow tbody").append(newRowContent);
             }
         },"json"); 
         

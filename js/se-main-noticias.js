@@ -31,6 +31,8 @@ $(document).ready(function(){
                         value: datos[strIndice].idNoticia,
                         text: datos[strIndice].idNoticia
                 }));
+                var newRowContent = "<tr><td>"+datos[strIndice].idNoticia+"</td><td>"+datos[strIndice].nombreNoticia+"</td><td>"+datos[strIndice].descripcionNoticia+"</td><td>"+datos[strIndice].fechaNoticia+"</td></tr>";
+                $("#tblShow tbody").append(newRowContent);
             }
         },"json"); 
     //Actualizamos los campos cuando haya un cambio en la select

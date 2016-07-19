@@ -37,6 +37,10 @@ switch($_POST["tipo"]){
         $aDatos=$oCentro->getAlumnosCurso($_POST["curso"]);
         echo json_encode($aDatos); 
         break;
+     case "alumno":
+        $aDatos=$oCentro->getAlumnosProfesor($_POST["profesor"]);
+        echo json_encode($aDatos); 
+        break;
     case "faltas":
         $aDatos=$oCentro->getFaltas($_POST["curso"]);
         echo json_encode($aDatos); 

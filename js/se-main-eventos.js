@@ -31,6 +31,8 @@ $(document).ready(function(){
                         value: datos[strIndice].idEvento,
                         text: datos[strIndice].idEvento
                 }));
+                var newRowContent = "<tr><td>"+datos[strIndice].idEvento+"</td><td>"+datos[strIndice].nombreEvento+"</td><td>"+datos[strIndice].descripcionEvento+"</td><td>"+datos[strIndice].fechaEvento+"</td></tr>";
+                $("#tblShow tbody").append(newRowContent);
             }
         },"json"); 
     //Actualizamos los campos cuando haya un cambio en la select
