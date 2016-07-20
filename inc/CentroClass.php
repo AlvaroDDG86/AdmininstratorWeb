@@ -414,7 +414,16 @@ class CentroClass {
 
     //Administracion de ALUMNOS
     
-    
+    /**
+     * Método para crear un nuevo alumno
+     * @param int $id
+     * @param String $nombre
+     * @param String $apellidos
+     * @param String $direccion
+     * @param String $email
+     * @param int $curso
+     * @return boolean
+     */
     public function newAlumno($id, $nombre, $apellidos, $direccion, $email, $curso) {
         $sql = "call newAlumno(".$id.",'".$nombre."','".$apellidos."','".$direccion."','".$email."',".$curso.");";
         return $this->conBBDD->query($sql);
@@ -431,12 +440,39 @@ class CentroClass {
         return $this->conBBDD->query($sql); 
     }
     
-    
+    /**
+     * Método para editar a un alumno
+     * @param int $id
+     * @param String $nombre
+     * @param String $apellidos
+     * @param String $direccion
+     * @param String $email
+     * @param int $curso
+     * @return boolean
+     */
     public function editAlumno($id, $nombre, $apellidos, $direccion, $email, $curso) {
         $sql = "call editAlumno(".$id.",'".$nombre."','".$apellidos."','".$direccion."','".$email."',".$curso.");";
         return $this->conBBDD->query($sql);
     }
     
+    /**
+     * Método para recorrer todos los cursos asociados a un alumno
+     * @param int $id
+     * @return boolean
+     */
+    public function getCursosAlumno($id) {
+         //Variable que contendra los datos de las noticias
+        $aCursos=[];
+        //Variable que contendra el resultado de la consulta
+        $rscDatos=  $this->conBBDD->query("call getCursosAlumno(".$id.");");
+        //Bucle para recorrer todas las filas de los datos
+        while($filFila=$rscDatos->fetch_object())
+        {
+            $aCursos[]=$filFila;
+        }
+        //Se devuelve el array con todos los datos
+        return $aCursos;
+    }
     
     // administracion de las TAREAS
     

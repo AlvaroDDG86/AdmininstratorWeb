@@ -84,6 +84,7 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
     <link href="../css/main.css" rel="stylesheet">
@@ -109,7 +110,7 @@
         
 	<div class="container">
 		<div class="page-header">
-			<h1>Administración <small><?php echo $_SESSION["usuario"]; ?></small></h1>
+			<h1>Administración <small id="idProfesorSmall"><?php echo $_SESSION["usuario"]; ?></small></h1>
 		</div>
 		<div class="navbar navbar-default">
 			<div class="container-fluid">
@@ -138,7 +139,7 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>Teléfonos</h3>
+                            <h3><span class="glyphicon glyphicon-phone-alt"></span>  Teléfonos</h3>
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-tabs">

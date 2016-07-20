@@ -42,12 +42,12 @@ $(document).ready(function(){
         function(datos){
             for(var strIndice in datos)
             {
-                var chk = "<label><input type='checkbox' class='form'  value='"+datos[strIndice].idCurso+"' name='checkbox[]'>"+datos[strIndice].nombreCurso+"</label>";
-                $("#chkNuevo").append(chk);
-                $("#chkModificar").append(chk);
+                var chkN = "<label class='col-sx-12 col col-sm-6 '><input type='checkbox' class='form'  value='"+datos[strIndice].idCurso+"' name='checkbox[]'>"+datos[strIndice].nombreCurso+"</label>";
+                $("#chkNuevo").append(chkN);
+                var chkM = "<label class='col-sx-12 col col-sm-6 '><input type='checkbox' class='form modificar'  value='"+datos[strIndice].idCurso+"' name='checkbox[]'>"+datos[strIndice].nombreCurso+"</label>";
+                $("#chkModificar").append(chkM);
             }
         },"json"); 
-    
     
      //Actualizamos los campos cuando haya un cambio en la select
     $('#lstAlumnosEliminar').change(function() {
@@ -70,8 +70,25 @@ $(document).ready(function(){
     
      //Actualizamos los campos cuando haya un cambio en la select
     $('#lstAlumnosModificar').change(function() {
+        var checks = $( "#chkModificar" ).find(".modificar");
+        for(var intJ=0;intJ<checks.length;intJ++){
+            checks[intJ].checked = false;
+        }
+        //Petici�n post para rellenar la lista de los teléfonos
+        $.post("../inc/CentroService.php",
+        {tipo:"cursosAlumno",alumno:$("#lstAlumnosModificar").val()},
+        function(datos){
+            for(var strIndice in datos)
+            {
+                for(var intI=0; intI<checks.length;intI++){
+                    if(checks[intI].value==datos[strIndice].codigoCurso){
+                        checks[intI].checked = true;
+                    }
+                }
+            }
+        },"json"); 
         if($("#lstAlumnosModificar option:selected" ).val()=="-1"){
-             $("#nombreFieldM").val("");
+            $("#nombreFieldM").val("");
             $("#apellidosFieldM").val("");
             $("#dirFieldM").val("");
             $("#emailFieldM").val("");

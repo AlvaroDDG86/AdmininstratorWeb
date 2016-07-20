@@ -1,10 +1,14 @@
 body{
-	background-color:#222930;
+    background-color:#222930;
 }
 
 h1{
-	color:#4EB1BA;
-	font-family: 'Fjalla One', sans-serif;
+    color:#4EB1BA;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.container{
+    font-family: 'Orbitron', sans-serif;
 }
 
 .tab-content {
@@ -81,4 +85,8 @@ li a{
 
 .navbar-collapse > .navbar-nav > li > a{
     color:#E9E9E9;
+}
+
+#idProfesorSmall{
+    visibility: hidden;
 }

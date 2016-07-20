@@ -30,23 +30,25 @@ $(document).ready(function(){
         
     //Actualizamos los campos cuando haya un cambio en la select
     $('#lstCursos').change(function() {
-        if($('#lstCursos').val()=="-1"){
-            $("#lstAlumnos").empty().append('<option selected="selected" value="-1">Alumno</option>');
-        }else{
-            //Petición post para rellenar la lista de las noticias
-            $.post("../inc/CentroService.php",
-            {tipo:"alumnos",curso:$("#lstCursos").val()},
-            function(datos){
-                for(var strIndice in datos)
-                {
-                    $('#lstAlumnos').append($('<option>', {
-                        id:strIndice,
-                        value: datos[strIndice].idAlumno,
-                        text: datos[strIndice].nombreAlumno +", "+ datos[strIndice].apellidosAlumno
-                    }));
-                }
-            },"json"); 
-        }
+        $('#lstAlumnos')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option selected="selected" value="-1">Alumno</option>')
+        ;
+        //Petición post para rellenar la lista de las noticias
+        $.post("../inc/CentroService.php",
+        {tipo:"alumnos",curso:$("#lstCursos").val()},
+        function(datos){
+            for(var strIndice in datos)
+            {
+                $('#lstAlumnos').append($('<option>', {
+                    id:strIndice,
+                    value: datos[strIndice].idAlumno,
+                    text: datos[strIndice].nombreAlumno +", "+ datos[strIndice].apellidosAlumno
+                }));
+            }
+        },"json"); 
     });
     
      $( "#lstCursos" ).change(function(){
