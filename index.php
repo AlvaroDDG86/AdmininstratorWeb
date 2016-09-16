@@ -10,7 +10,7 @@ if(isset($_SESSION["secretario"])){
     header("location:secretario/secretario-inicio.php");
     exit;
 }
-if(isset($_POST["usuario"]) && isset($_POST["password"])) //Evaluamos si viene usuario y contraseña en la peticion post
+if(isset($_POST["usuario"]) && isset($_POST["password"]) && intval($_POST["usuario"]!= 0 )) //Evaluamos si viene usuario y contraseña en la peticion post
 {
     try
     {

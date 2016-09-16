@@ -2,9 +2,12 @@ body{
     background-color:#222930;
 }
 
-h1{
-    color:#4EB1BA;
-    font-family: 'Fjalla One', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5{
+    color:#FFBF00;
 }
 
 .container{
